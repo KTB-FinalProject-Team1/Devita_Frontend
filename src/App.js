@@ -13,10 +13,6 @@ const theme = {
         background: '#f5f5f5',
         tabBackground: '#F2F2F2',
     },
-    breakpoints: {
-        mobile: '500px',
-        tablet: '768px',
-    },
 };
 
 const Frame = styled.div`
@@ -31,8 +27,8 @@ const Frame = styled.div`
 
 const Wrapper = styled.div`
   width: 100%;
-  max-width: 600px;
-  aspect-ratio: 9 / 16; /* 가로:세로 비율 유지 */
+  max-width: 450px;
+  height: 100%; /* 부모(Frame)의 높이와 동일하게 설정 */
   background-color: white;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -41,12 +37,12 @@ const Wrapper = styled.div`
 `;
 
 const Content = styled.div`
-  width: 95%;
-  flex: 1;
-  overflow-y: auto; 
-  margin: 40px auto;
-    display: flex;
-    background-color: antiquewhite;
+  flex: 1; /* 남은 공간을 모두 차지하도록 설정 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* 내용이 위에서부터 쌓이도록 설정 */
+  padding: 10px;
 `;
 function App() {
     return (
