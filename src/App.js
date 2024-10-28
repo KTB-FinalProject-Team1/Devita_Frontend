@@ -43,7 +43,8 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* 내용이 위에서부터 쌓이도록 설정 */
+  justify-content: flex-start; 
+    background-color: gold;/* 내용이 위에서부터 쌓이도록 설정 */
     
 `;
 function App() {
