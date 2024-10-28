@@ -29,7 +29,6 @@ function KakaoLogin() {
             </style.KakaoLoginWrapper>
 
             {/* 액세스 토큰 요청 테스트용 버튼 */}
-            <button onClick={handleAccessTokenRequest}>Get Access Token</button>
         </style.Wrapper>
     );
 }
