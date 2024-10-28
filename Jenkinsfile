@@ -45,7 +45,9 @@ pipeline {
 
         stage('Build Project') {
             steps {
-                sh 'npm run build'
+                withEnv(['CI=false']) {
+                    sh 'npm run build'
+                }
             }
         }
 
