@@ -6,7 +6,7 @@ export const Layout = styled.div`
   height: 7vh;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   //font-family: "EF_jejudoldam", sans-serif;
   color: ${(props) => props.color || "black"};
   background-color: ${(props) => props.background || "#F2F2F2"};
@@ -18,6 +18,7 @@ export const Layout = styled.div`
 export const Logo = styled.div`
     margin-left: 50px;
     display:flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 `;
@@ -25,12 +26,9 @@ export const LogoText = styled.text`
     color: #9e9e9e;
     font-weight: bold;
     font-size: 35px;
-`
+`;
 
-export const BackIcon = styled(FaAngleLeft)`
-  position: absolute;
-  left: 10px;
-  font-size: 1.5rem;
-  color: black;
-  cursor: pointer;
+export const LoginButton = styled.button `
+    border: none;
+    margin-right: 20px;
 `;

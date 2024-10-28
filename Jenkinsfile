@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         GIT_BRANCH = 'main'
-        GIT_REPO = 'https://github.com/chanyoungit/final-front'
+        GIT_REPO = 'https://github.com/KTB-FinalProject-Team1/Devita_Frontend'
         S3_BUCKET = 'devita-front'
         AWS_REGION = 'ap-northeast-2'
         AWS_CREDENTIALS = credentials('ayaan_aws')
@@ -33,6 +33,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 git branch: "${GIT_BRANCH}", url: "${GIT_REPO}"
+
             }
         }
 
@@ -44,7 +45,9 @@ pipeline {
 
         stage('Build Project') {
             steps {
-                sh 'npm run build'
+                withEnv(['CI=false']) {
+                    sh 'npm run build'
+                }
             }
         }
 

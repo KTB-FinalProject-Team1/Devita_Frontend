@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars, eqeqeq */
 import React, { useState } from 'react';
 import * as style from "./style/Home.main";
 import Calendar from "../HomePage/Calendar";
