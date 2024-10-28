@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 export const Header = ({ children, color, background}) => {
     const navigation = useNavigate();
+    const handleClickLogin = () => {
+        navigation('/login');
+    }
     return (
         <style.Layout color={color} background={background} >
            <style.Logo>
@@ -11,6 +14,7 @@ export const Header = ({ children, color, background}) => {
                </style.LogoText>
            </style.Logo>
             {children}
+            <style.LoginButton onClick={handleClickLogin}>login</style.LoginButton>
         </style.Layout>
     );
 };

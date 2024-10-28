@@ -1,9 +1,8 @@
-import react from 'react';
 import styled from 'styled-components';
 
 const BubbleWrapper = styled.div`
     display: flex;
-    justify-content: ${(props)=>(props.position == 'right' ? 'flex-end':'flex-start')};
+    justify-content: ${(props)=>(props.position === 'right' ? 'flex-end':'flex-start')};
     margin: 10px;
 
 `;
@@ -31,8 +30,8 @@ const Bubble = styled.div`
         border-color: #f0f0f0 transparent transparent transparent; 
         border-radius: 0 0 0 0;
         top: 100%;
-        left: ${(props)=> (props.position == 'right' ? 'auto' : '20px')};
-        right: ${(props)=> (props.position == 'right' ? '20px' : 'auto')};
+        left: ${(props)=> (props.position === 'right' ? 'auto' : '20px')};
+        right: ${(props)=> (props.position === 'right' ? '20px' : 'auto')};
     }
 `;
 

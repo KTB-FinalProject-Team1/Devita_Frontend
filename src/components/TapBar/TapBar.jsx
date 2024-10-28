@@ -59,7 +59,7 @@ const TabBar = () => {
                 <FaInstagram />
                 sns
             </TabButton>
-            <TabButton to="/mypage" $isActive={location.pathname === '/mypage'}>
+            <TabButton to="/login" $isActive={location.pathname === '/login'}>
                 <FaUser />
                 my
             </TabButton>
