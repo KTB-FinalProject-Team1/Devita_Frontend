@@ -56,10 +56,10 @@ function App() {
                         <Wrapper>
                             <Content>
                                 <Routes>
-                                    <Route path="/" element={<KakaoLoginPage/>} />
+                                    <Route path="/login" element={<KakaoLoginPage/>} />
                                     <Route path="/oauth2/redirect" element={<KakaoRedirectHandler />} />
                                     <Route path="/onboarding"></Route>
-                                    <Route path="/home" element={ <MainLayout><HomePage /></MainLayout> } />
+                                    <Route path="/" element={ <MainLayout><HomePage /></MainLayout> } />
                                     <Route path="/aimission" element={ <MainLayout><AIPage /></MainLayout>} />
                                     <Route path="/sns" element={<HomePage />} />
                                     <Route path="/mypage" element={<HomePage />} />

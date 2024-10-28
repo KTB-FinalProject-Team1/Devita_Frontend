@@ -9,7 +9,7 @@ function KakaoLogin() {
     const handleKakaoLogin = async () => {
         try {
             // 1. 카카오 로그인 화면으로 리디렉션
-            window.location.href = `${BASE_URL}/oauth2/authorization/kakao`;
+            window.location.href = `${BASE_URL}:8080/oauth2/authorization/kakao`;
         } catch (error) {
             console.error('Error during Kakao login redirection:', error);
         }
@@ -27,9 +27,6 @@ function KakaoLogin() {
                 <style.KakaoLogo src={KakaoLogo} alt="Kakao Logo" />
                 <style.KakaoLoginText>카카오로 로그인하기</style.KakaoLoginText>
             </style.KakaoLoginWrapper>
-
-            {/* 액세스 토큰 요청 테스트용 버튼 */}
-            <button onClick={handleAccessTokenRequest}>Get Access Token</button>
         </style.Wrapper>
     );
 }
