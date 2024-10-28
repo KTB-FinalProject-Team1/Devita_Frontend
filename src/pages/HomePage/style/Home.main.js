@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
     flex:1;
     width: 100%;
     height: 100vh;
-    background-color: gold;
+    background-color: blue;
 
 `;
 export const TodayMissionTotalWrapper = styled.div`
@@ -15,6 +15,7 @@ export const TodayMissionTotalWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     margin-top: 10px;
+    background-color: beige;
 
 
 `;
