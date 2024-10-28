@@ -3,7 +3,6 @@ import * as style from "./style/Home.main";
 import Calendar from "../HomePage/Calendar";
 import TodoList from "../HomePage/TodoList";
 
-
 function HomePage() {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [todos, setTodos] = useState({});
@@ -15,29 +14,27 @@ function HomePage() {
             [dateKey]:[...(prevTodos[dateKey] || []), todo],
         }))
     }
-    return(
+    return (
         <style.Wrapper>
-            <style.ScrollWrapper>
+            <style.TodayMissionTotalWrapper>
+                <style.TodayMissionTitle>
+                    오늘의 강제 미션
+                </style.TodayMissionTitle>
                 <style.TodayMissionWrapper>
-                    <div></div>
+
                 </style.TodayMissionWrapper>
-                <style.CalendarWrapper>
-                    <Calendar selectDate={selectedDate} onSelectDate={setSelectedDate}></Calendar>
+            </style.TodayMissionTotalWrapper>
+            <style.CalendarWrapper>
+                <Calendar selectDate={selectedDate} onSelectDate={setSelectedDate}></Calendar>
 
-                </style.CalendarWrapper>
-                <style.TodoListWrapper>
-                    <TodoList
-                        selectedDate={selectedDate}
-                        todos={todos[selectedDate.toISOString().split('T')[0]] || []}
-                        onAddTodo={addTodo}/>
-                </style.TodoListWrapper>
-
-
-            </style.ScrollWrapper>
-
-
+            </style.CalendarWrapper>
+            <style.TodoListWrapper>
+                <TodoList
+                    selectedDate={selectedDate}
+                    todos={todos[selectedDate.toISOString().split('T')[0]] || []}
+                    onAddTodo={addTodo}/>
+            </style.TodoListWrapper>
         </style.Wrapper>
-
     )
 }
 

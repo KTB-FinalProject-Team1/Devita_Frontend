@@ -1,8 +1,8 @@
 import styled, { keyframes, css } from "styled-components";
 
 export const TotalWrapper = styled.div`
-    width: 75%;
-    height: 350px;
+    width: 85%;
+    height: 310px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,40 +16,42 @@ export const TotalWrapper = styled.div`
 `;
 
 export const TitleWrapper = styled.div`
-width: 90%;
+width: 85%;
 height: 10%;
 
 display: flex;
 flex-direction: column;
 align-items: flex-start;
 justify-content: center;
-font-size: 20px;
+font-size: 18px;
 font-weight: bold;`;
 
 export const Title = styled.text``;
 
 
 export const DateWrapper = styled.div`
-width: 90%;
+width: 85%;
 height: 5%;
 
 display: flex;
 flex-direction: column;
 align-items: flex-start;
 justify-content: center;
-font-size: 17px;
-font-weight: bold;`;
+font-size: 16px;
+font-weight: bold;
+margin-bottom: 5px;`;
 
 export const Date = styled.text``;
 
 export const MissionTotalWrapper = styled.div`
-width: 85%;
-height: 220px;
+width: 90%;
+height: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+   
+    
 `;
 
 
@@ -57,6 +59,8 @@ export const MissionFrame = styled.div`
 width: 280px;
     height: 220px;
     overflow-y: auto;
+
+
 `;
 const borderFadeAnimation = (color) => keyframes`
     
@@ -73,7 +77,7 @@ const borderFadeAnimation = (color) => keyframes`
 
 export const MissionWrapper = styled.div`
   width: 260px;
-  height: 50px;
+  height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,6 +85,7 @@ export const MissionWrapper = styled.div`
   box-shadow: 0px 2px 2px 0px grey;
   margin-top: 10px;
   margin-bottom: 10px;
+    margin-left: 5px;
   padding: 3px;
   border-radius: 20px;
   position: relative;
@@ -136,6 +141,27 @@ export const MissionEditWrapper = styled.div`
     background-color: gray;
 `;
 
-export const AddButtonWrapper = styled.div``;
+export const AddButtonWrapper = styled.div`
+    width: 210px;
+    height: 40px;
+    background-color: #E1E1E1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    margin-top: 10px;
 
-export const AddButton = styled.button``;
+`;
+
+export const AddButton = styled.button`
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    font-weight: bold;
+;
+`;
+
+
+
+

@@ -3,14 +3,12 @@ import styled from 'styled-components';
 // 전체 달력 컨테이너
 export const TotalWrapper = styled.div`
     width: 90%;
-  height: 130px;
+  height: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 20px;
-  
-
   
 `;
 
@@ -26,7 +24,7 @@ export const DateMoveWrapper = styled.div`
 `;
 
 export const MonthYearText = styled.div`
-font-size:25px;
+font-size:23px;
 font-weight: bold;
 color: #333;
     margin: 25px;
@@ -34,7 +32,7 @@ color: #333;
 export const NavigationButton = styled.button`
 background-color: transparent;
     border: none;
-    font-size: 24px;
+    font-size: 20px;
     cursor: pointer;
     color: #333;
     &:hover {
@@ -76,8 +74,8 @@ export const EachDayButton = styled.button`
   color: ${(props) => (props.isToday || props.isSelected ? '#ffffff' : '#000000')};
   border: none;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 37px;
+  height: 37px;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { FaHome, FaBrain, FaInstagram, FaUser } from 'react-icons/fa';
+import { FaHome, FaBrain, FaInstagram, FaUser} from 'react-icons/fa';
 
 const activeColor = '#7DB1FF';
 const inactiveColor = '#9e9e9e'

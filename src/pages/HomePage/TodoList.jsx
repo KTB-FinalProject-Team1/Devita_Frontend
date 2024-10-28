@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-import TodoListAddModal from './TodoListAddModal';
 import * as style from './style/TodoList';
+import TodoListAddModal from './TodoListAddModal';
+import AddCategoryModal from "./TodoListAddCategory";
+import { styled } from '@mui/material/styles';
+import Button from '@mui/material/Button';
 
 const TodoList = ({ selectedDate, todos, onAddTodo }) => {
     const [inputValue, setInputValue] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [category, setCategory] = useState('');
     const [color, setColor] = useState('');
+    const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
 
 
     const openModal = () => setIsModalOpen(true);
@@ -18,12 +22,30 @@ const TodoList = ({ selectedDate, todos, onAddTodo }) => {
         onAddTodo(selectedDate, todo);
         closeModal();
     };
+    //예시 categories
+    const [categories, setCategories] = useState([
+        { name: 'Work', color: '#FFA7A7' },
+        { name: 'AI 생성!', color: '#7DB1FF' },
+        { name: '강제 미션!', color: '#086BFF' },
+        { name: 'Shopping', color: '#FFCD68' },
+        { name: 'Others', color: '#6FFFCF' },
+    ]);
+
+    const AddStyledButton = styled(Button)({
+        width: '65%',
+        fontSize: '13px',
+        fontWeight: '800',
+        borderRadius: '20px',
+        backgroundColor: '#DEDEDE',
+        color: '#767676',
+        '&:hover':{
+            backgroundColor: '#7DB1FF',
+        }
+    });
+
 
     return (
         <style.TotalWrapper>
-            <style.TitleWrapper>
-                <style.Title>To-Do List</style.Title>
-            </style.TitleWrapper>
             <style.DateWrapper>
                 <style.DateWrapper>
                     <style.Date>{selectedDate.toDateString()}</style.Date>
@@ -49,11 +71,9 @@ const TodoList = ({ selectedDate, todos, onAddTodo }) => {
                     ))}
                 </style.MissionFrame>
             </style.MissionTotalWrapper>
-            <style.AddButtonWrapper>
-                <style.AddButton onClick={openModal}>
-                    Add Todo
-                </style.AddButton>
-            </style.AddButtonWrapper>
+            <AddStyledButton onClick={openModal} variant="contained">
+                Add Todo
+            </AddStyledButton>
             <TodoListAddModal
                 isOpen={isModalOpen}
                 onClose={closeModal}
@@ -63,7 +83,14 @@ const TodoList = ({ selectedDate, todos, onAddTodo }) => {
                 category={category}
                 setCategory={setCategory}
                 setColor = {setColor}
+                categories={categories}
+                onOpenCategoryModal={() => setIsCategoryModalOpen(true)}
             />
+            <AddCategoryModal
+                isOpen={isCategoryModalOpen}
+                onClose={() => setIsCategoryModalOpen(false)}
+                categories = {categories}
+                setCategories = {setCategories}/>
         </style.TotalWrapper>
     );
 };

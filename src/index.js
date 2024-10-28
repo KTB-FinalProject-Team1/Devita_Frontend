@@ -4,10 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+
+const BASE_URL = process.env.BASE_URL;
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <App BASE_URL={BASE_URL}/>
   </React.StrictMode>
 );
 

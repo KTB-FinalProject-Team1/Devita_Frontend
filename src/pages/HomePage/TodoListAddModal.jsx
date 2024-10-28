@@ -1,25 +1,19 @@
-// src/pages/HomePage/TodoListAddModal.jsx
-
 import React from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import * as style from './style/TodoListAddModal';
 
-const TodoListAddModal = ({ isOpen, onClose, onSubmit, inputValue, setInputValue, category, setCategory, setColor}) => {
-    if (!isOpen) return null;
-
-    const categoryColors = {
-        Work: '#FFA7A7',
-        'AI 생성!': '#7DB1FF',
-        '강제 미션!': '#086BFF',
-        Shopping: '#FFCD68',
-        Others: '#6FFFCF',
-    };
-
-    const handleCategoryChange = (e) => {
-        const selectedCategory = e.target.value;
-        setCategory(selectedCategory);
-        setColor(categoryColors[selectedCategory]);
-    }
-
-
+const TodoListAddModal = ({
+                              isOpen,
+                              onClose,
+                              onSubmit,
+                              inputValue,
+                              setInputValue,
+                              category,
+                              setCategory,
+                              setColor,
+                              categories,
+                              onOpenCategoryModal
+                          }) => {
     const handleAdd = () => {
         if (inputValue.trim() && category.trim()) {
             onSubmit(inputValue, category);
@@ -28,55 +22,67 @@ const TodoListAddModal = ({ isOpen, onClose, onSubmit, inputValue, setInputValue
         }
     };
 
-    return (
-        <div style={modalStyles.overlay}>
-            <div style={modalStyles.modal}>
-                <h2>Add a To-Do</h2>
-                <input
-                    type="text"
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="할 일을 적어주세요"
-                />
-                <select
-                    value={category}
-                    onChange={handleCategoryChange}
-                >
-                    <option value="">카테고리를 선택하세요</option>
-                    <option value="Work">Work</option>
-                    <option value="AI 생성!">AI 생성!</option>
-                    <option value="강제 미션!">강제 미션!</option>
-                    <option value="Shopping">Shopping</option>
-                    <option value="Others">Others</option>
-                </select>
-                <button onClick={handleAdd}>Add</button>
-                <button onClick={onClose}>Cancel</button>
-            </div>
-        </div>
-    );
-};
+    const modalVariants = {
+        hidden: { y: '100vh', opacity: 0 }, // 화면 하단에서 시작
+        visible: { y: 0, opacity: 1 }, // 화면에 보이는 상태
+        exit: { y: '100vh', opacity: 0 }, // 다시 화면 아래로 내려가면서 사라짐
+    };
 
-const modalStyles = {
-    overlay: {
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'flex-end',
-    },
-    modal: {
-        width: '100%',
-        maxWidth: '410px',
-        height: '45%',
-        backgroundColor: '#fff',
-        padding: '20px',
-        borderRadius: '20px',
-        textAlign: 'center',
-    },
+    return (
+        <AnimatePresence>
+            {isOpen && (
+                <style.OverLay>
+                    <motion.div
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        variants={modalVariants}
+                        transition={{ duration: 0.5, ease: 'easeInOut' }} // 애니메이션 시간 및 타이밍 함수 설정
+                    >
+                        <style.ModalWrapper>
+                            <style.InputWrapper>
+                                <style.Input
+                                    type="text"
+                                    value={inputValue}
+                                    onChange={(e) => setInputValue(e.target.value)}
+                                    placeholder="할 일을 적어주세요"
+                                />
+                            </style.InputWrapper>
+
+                            <div>
+                                {categories.map((category) => (
+                                    <button
+                                        key={category.name}
+                                        onClick={() => {
+                                            setCategory(category.name);
+                                            setColor(category.color);
+                                        }}
+                                        style={{
+                                            backgroundColor: category.color,
+                                            margin: '5px',
+                                            border: 'none',
+                                            padding: '10px',
+                                            borderRadius: '5px',
+                                            color: '#fff',
+                                            cursor: 'pointer',
+                                        }}
+                                    >
+                                        {category.name}
+                                    </button>
+                                ))}
+                            </div>
+
+                            <button onClick={handleAdd}>Add</button>
+                            <button onClick={onClose}>Cancel</button>
+                            <button onClick={onOpenCategoryModal}>
+                                Add New Category
+                            </button>
+                        </style.ModalWrapper>
+                    </motion.div>
+                </style.OverLay>
+            )}
+        </AnimatePresence>
+    );
 };
 
 export default TodoListAddModal;
