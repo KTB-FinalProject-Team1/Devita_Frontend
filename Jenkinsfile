@@ -33,6 +33,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 git branch: "${GIT_BRANCH}", url: "${GIT_REPO}"
+                sh 'cat TestDeploy'
             }
         }
 
