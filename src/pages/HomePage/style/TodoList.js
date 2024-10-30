@@ -2,7 +2,7 @@ import styled, { keyframes, css } from "styled-components";
 
 export const TotalWrapper = styled.div`
     width: 85%;
-    height: 310px;
+    height: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -154,11 +154,15 @@ export const AddButtonWrapper = styled.div`
 
 `;
 
-export const AddButton = styled.button`
+export const AddMissionButton = styled.button`
+    width: 80%;
+    height: 13%;
     border: none;
-    background: transparent;
+    border-radius: 10px;
+    background-color: #7DB1FF;
     font-size: 16px;
     font-weight: bold;
+    
 ;
 `;
 

@@ -11,7 +11,7 @@ const Bubble = styled.div`
     background-color: #f0f0f0;
     color: #333;
     padding: 10px 15px;
-    border-radius: 20px;
+    border-radius: 10px;
     position: relative;
     max-width: ${(props) => props.width || '60%'};
     width: ${(props) => props.width || 'auto'};

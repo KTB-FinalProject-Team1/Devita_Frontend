@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as style from "./style/AI.main";
 import ChatBubble from "../../components/ChatBubble/ChatBubble";
 import CategoryData from "../../assets/DummyData/Category";
-
+import ButtonBlue from "../../components/Buttons/ButtonBlue";
 
 function AIPage() {
     const [selectedTopCategory, setSelectedTopCategory] = useState(null);
     const [selectedSubCategory, setSelectedSubCategory] = useState(null);
+    const [subCategories, setSubCategories] = useState([]);
     const [isGenerated, setIsGenerated ] = useState(false);
 
     const handleTopCategorySelect = (category) => {
@@ -27,9 +28,13 @@ function AIPage() {
             alert('카테고리를 먼저 선택하세요');
         }
     }
+    useEffect(() => {
+        if (selectedTopCategory) {
+            const selectedCategory = CategoryData.find((item) => item.name === selectedTopCategory);
+            setSubCategories(selectedCategory ? selectedCategory.subcategories : []);
+        }
+    }, [selectedTopCategory]);
 
-    const selectedCategory = CategoryData.find((item) => item.name == selectedTopCategory);
-    const subCategories  = selectedCategory ? selectedCategory.subcategories : [];
 
     return (
         <style.TotalWrapper>
@@ -50,9 +55,18 @@ function AIPage() {
                 </style.TopCategoryWrapper>
                 {selectedTopCategory && (
                     <style.SubCategory>
-                        <button onClick={() => handleSubCategorySelect('SubCategory1')}>SubCategory 1</button>
-                        <button onClick={() => handleSubCategorySelect('SubCategory2')}>SubCategory 2</button>
-                        <button onClick={() => handleSubCategorySelect('SubCategory3')}>SubCategory 3</button>
+                        <ChatBubble position="left" width="60%" height="20px">
+                            하위 분류를 선택해 주세요!
+                        </ChatBubble>
+                        <style.SubCategorySelectWrapper>
+                            <style.SubCategorySelectScroll>
+                                {subCategories.map((subcategory) => (
+                                    <style.SubCategoryButton key={subcategory} onClick={() => handleSubCategorySelect(subcategory)}>
+                                        {subcategory}
+                                    </style.SubCategoryButton>
+                                ))}
+                            </style.SubCategorySelectScroll>
+                        </style.SubCategorySelectWrapper>
                     </style.SubCategory>
                 )}
                 {selectedSubCategory && (
@@ -60,19 +74,24 @@ function AIPage() {
                         <style.GenerateButton onClick={handleGenerateButtonClick}>
                             미션 생성하기
                         </style.GenerateButton>
+
                     </style.GenerateButtonWrapper>
                 )}
-                {isGenerated && (
+                {isGenerated ? (
                     <style.MissionWrapper>
                         <style.MissionSelectWrapper>
-                            <p>미션 생성 {selectedTopCategory} {selectedSubCategory} 기반!</p>
+                            <ChatBubble position="right" width="80%" height="160px">{selectedTopCategory}{selectedSubCategory}</ChatBubble>
                         </style.MissionSelectWrapper>
                         <style.MissionSelectButtonWrapper>
-                            <button>Mission Action 1</button>
-                            <button>Mission Action 2</button>
+                            <style.MissionRegenerateButton onClick = {()=>{alert('hello')}}>다시 생성하기</style.MissionRegenerateButton>
+                            <style.MissionRegenerateButton onClick = {()=>{alert('hellotwo')}}>투두에 추가하기</style.MissionRegenerateButton>
                         </style.MissionSelectButtonWrapper>
                     </style.MissionWrapper>
-                )}
+                ):(
+                    <div>
+                        <p>로딩중</p>
+                    </div>
+                    )}
 
             </style.SubAIWrapper>
         </style.TotalWrapper>

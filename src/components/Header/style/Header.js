@@ -7,16 +7,15 @@ export const Layout = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  //font-family: "EF_jejudoldam", sans-serif;
   color: ${(props) => props.color || "black"};
-  background-color: ${(props) => props.background || "#F2F2F2"};
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  background-color: ${(props) => props.background || "white"} ;
   position: sticky;
   top: 0;
+    border-radius: 0 0 10px 10px;
 
 `;
 export const Logo = styled.div`
-    margin-left: 50px;
+    margin-left: 30px;
     display:flex;
     flex-direction: row;
     justify-content: center;
@@ -24,8 +23,8 @@ export const Logo = styled.div`
 `;
 export const LogoText = styled.text`
     color: #9e9e9e;
-    font-weight: bold;
-    font-size: 35px;
+    font-weight: 700;
+    font-size: 25px;
 `;
 
 export const LoginButton = styled.button `

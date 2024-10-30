@@ -2,14 +2,24 @@ import styled, {keyframes} from "styled-components";
 
 export const Wrapper = styled.div`
     flex:1;
-    width: 100%;
+    width: 90%;
     height: 100vh;
-    background-color: blue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    ::-webkit-scrollbar{
+        display: none;
+    }
+    scrollbar-width: none;
+    padding: 25px;
+    background-color: gold;
+  
 
 `;
 export const TodayMissionTotalWrapper = styled.div`
-    width: 100%;
-    height: 18%;
+    width: 90%;
+    height: 15%;
     flex-grow:1;
     display: flex;
     flex-direction: column;
@@ -39,7 +49,7 @@ const borderFadeAnimation = (color) => keyframes`
 `;
 export const TodayMissionWrapper = styled.div`
   width: 85%;
-  height: 60px;
+  height: 50px;
   border-radius: 20px;
   border: 2.5px solid rgba(8, 107, 255, 0); /* 초기에는 투명한 상태 */
   margin-top: 5px;
@@ -55,8 +65,7 @@ export const CalendarWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-
-
+    
 `;
 export const TodoListWrapper = styled.div`
     width: 100%;
@@ -65,6 +74,6 @@ export const TodoListWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-
+    margin-bottom: 20px;
+    
 `;
