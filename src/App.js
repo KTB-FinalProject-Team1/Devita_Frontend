@@ -45,7 +45,7 @@ const Content = styled.div`
   align-items: center;
     overflow-y: auto;
   justify-content: flex-start;
-
+    background-color: gold;/* 내용이 위에서부터 쌓이도록 설정 */
     
 `;
 function App() {

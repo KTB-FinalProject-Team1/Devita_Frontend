@@ -24,6 +24,8 @@ export const TodayMissionTotalWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 10px;
+    background-color: beige;
 
 
 `;
