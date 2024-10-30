@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import * as style from './style/TodoListAddModal';
+import ButtonBlue from '../../components/Buttons/ButtonBlue';
+
 
 const TodoListAddModal = ({
                               isOpen,
@@ -40,6 +42,11 @@ const TodoListAddModal = ({
                         transition={{ duration: 0.5, ease: 'easeInOut' }} // 애니메이션 시간 및 타이밍 함수 설정
                     >
                         <style.ModalWrapper>
+                            <style.TopButtonWrapper>
+                                <style.CategoryChangeButton onClick={onOpenCategoryModal}>카테고리 설정</style.CategoryChangeButton>
+                                <style.ExitButton onClick={onClose}>x</style.ExitButton>
+
+                            </style.TopButtonWrapper>
                             <style.InputWrapper>
                                 <style.Input
                                     type="text"
@@ -49,34 +56,25 @@ const TodoListAddModal = ({
                                 />
                             </style.InputWrapper>
 
-                            <div>
-                                {categories.map((category) => (
-                                    <button
-                                        key={category.name}
-                                        onClick={() => {
-                                            setCategory(category.name);
-                                            setColor(category.color);
-                                        }}
-                                        style={{
-                                            backgroundColor: category.color,
-                                            margin: '5px',
-                                            border: 'none',
-                                            padding: '10px',
-                                            borderRadius: '5px',
-                                            color: '#fff',
-                                            cursor: 'pointer',
-                                        }}
-                                    >
-                                        {category.name}
-                                    </button>
-                                ))}
-                            </div>
+                            <style.CategoryButtonWrapper>
+                                <style.CategoryButtonScrollWrapper>
+                                    {categories.map((item) => (
+                                        <style.CategoryButton
+                                            key={item.name}
+                                            onClick={() => {
+                                                setCategory(item.name);
+                                                setColor(item.color);
+                                            }}
+                                            color={item.color}
+                                            isSelected={category === item.name}
+                                        >
+                                            {item.name}
+                                        </style.CategoryButton>
+                                    ))}
+                                </style.CategoryButtonScrollWrapper>
+                            </style.CategoryButtonWrapper>
 
-                            <button onClick={handleAdd}>Add</button>
-                            <button onClick={onClose}>Cancel</button>
-                            <button onClick={onOpenCategoryModal}>
-                                Add New Category
-                            </button>
+                            <ButtonBlue width="80%" height="40px" onClick={handleAdd}>Add Todo</ButtonBlue>
                         </style.ModalWrapper>
                     </motion.div>
                 </style.OverLay>

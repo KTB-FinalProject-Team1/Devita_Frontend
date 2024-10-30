@@ -28,15 +28,14 @@ const TabButton = styled(NavLink)`
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  font-size: 15px;
+  font-size: 10px;
   color: ${(props) => (props.$isActive ? activeColor : inactiveColor)}; /* 비활성화 색상 */
-
   &.active {
     color: ${(props) => props.theme.colors.tabIconActive}; /* 활성화 색상 */
   }
 
   svg {
-    font-size: ${(props) => (props.$isActive ? '28px' : '25px')}; /* 아이콘 크기 조정 */
+    font-size: ${(props) => (props.$isActive ? '26px' : '23px')}; /* 아이콘 크기 조정 */
     margin-bottom: 5px;
     transition: all 0.3s ease; /* 부드러운 애니메이션 */
   }

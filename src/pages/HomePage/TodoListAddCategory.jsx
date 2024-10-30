@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import * as style from './style/TodoListAddModal'; // 동일한 스타일 사용 가능
+import ButtonBlue from "../../components/Buttons/ButtonBlue";
 
 const AddCategoryModal = ({ isOpen, onClose, categories, setCategories }) => {
     const [newCategoryName, setNewCategoryName] = useState('');
