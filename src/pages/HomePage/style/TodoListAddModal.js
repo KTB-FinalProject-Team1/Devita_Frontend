@@ -14,8 +14,7 @@ export const OverLay = styled.div`
 `;
 
 export const ModalWrapper = styled.div`
-    width: 100%;
-    max-width: 390px;
+    width: 380px;
     height: 300px;
     display: flex;
     flex-direction: column;
@@ -27,16 +26,90 @@ export const ModalWrapper = styled.div`
     text-align: center;
 `;
 
-export const ExitWrapper = styled.div`
+export const TopButtonWrapper = styled.div`//Wrapper1
     width: 80%;
     height:10%;
-    background-color: yellow;
+    display: flex;
+    justify-content:space-between;
 
 `;
-export const InputWrapper = styled.div`
+export const CategoryChangeButton = styled.button`
+    height: 100%;
+    border: none;
+    font-size: 10px;
+    font-weight: bold;
+    color: #7DB1FF;
+    background-color: transparent;
+`
+export const ExitButton = styled.button`
+    width: 10%;
+    height: 100%;
+    border: none;
+    font-size: 15px;
+    color: #7DB1FF;
+    background-color: transparent;
+`;
+export const InputWrapper = styled.div`//Wrapper2
     width: 80%;
-    height:10%;
-    background-color: pink;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    border-bottom: 2px solid #7DB1FF;
 
 `;
-export const Input = styled.input``;
+export const Input = styled.input`
+    border: none;
+    outline: none;
+    width: 90%;
+    height: 70%;
+    color: #7DB1FF;
+    font-weight: bold;
+    ::placeholder {
+        color: #B0C4FF; 
+        opacity: 0.7; 
+        border: none;
+        font-weight: bold;
+        
+    }
+
+`;
+export const CategoryButtonWrapper = styled.div` //Wrapper 3
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 40%;
+
+
+`;
+export const CategoryButtonScrollWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 290px;
+    height: 50px;
+    overflow-y: hidden;
+    overflow-x: auto;
+    padding: 5px;
+  
+`;
+export const CategoryButton = styled.button`
+    height: 50px;
+    min-width: 70px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: none;
+    margin-left: 10px;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    background-color: ${(props) => props.color};
+    opacity: ${(props) => (props.isSelected ? 1 : 0.3)}; /* 선택된 버튼은 불투명 */
+`;
+

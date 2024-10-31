@@ -4,6 +4,7 @@ import TodoListAddModal from './TodoListAddModal';
 import AddCategoryModal from "./TodoListAddCategory";
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
+import ButtonBlue from "../../components/Buttons/ButtonBlue";
 
 const TodoList = ({ selectedDate, todos, onAddTodo }) => {
     const [inputValue, setInputValue] = useState('');
@@ -31,17 +32,6 @@ const TodoList = ({ selectedDate, todos, onAddTodo }) => {
         { name: 'Others', color: '#6FFFCF' },
     ]);
 
-    const AddStyledButton = styled(Button)({
-        width: '65%',
-        fontSize: '13px',
-        fontWeight: '800',
-        borderRadius: '20px',
-        backgroundColor: '#DEDEDE',
-        color: '#767676',
-        '&:hover':{
-            backgroundColor: '#7DB1FF',
-        }
-    });
 
 
     return (
@@ -71,9 +61,9 @@ const TodoList = ({ selectedDate, todos, onAddTodo }) => {
                     ))}
                 </style.MissionFrame>
             </style.MissionTotalWrapper>
-            <AddStyledButton onClick={openModal} variant="contained">
+            <ButtonBlue width="80%" height="40px" onClick={openModal} >
                 Add Todo
-            </AddStyledButton>
+            </ButtonBlue>
             <TodoListAddModal
                 isOpen={isModalOpen}
                 onClose={closeModal}

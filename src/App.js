@@ -43,7 +43,9 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* 내용이 위에서부터 쌓이도록 설정 */
+    overflow-y: auto;
+  justify-content: flex-start;
+    background-color: gold;/* 내용이 위에서부터 쌓이도록 설정 */
     
 `;
 function App() {
@@ -57,9 +59,9 @@ function App() {
                             <Content>
                                 <Routes>
                                     <Route path="/login" element={<KakaoLoginPage/>} />
-                                    <Route path="/oauth2/redirect" element={<KakaoRedirectHandler />} />
+                                    <Route path="/" element={<KakaoRedirectHandler />} />
                                     <Route path="/onboarding"></Route>
-                                    <Route path="/" element={ <MainLayout><HomePage /></MainLayout> } />
+                                    <Route path="/home" element={ <MainLayout><HomePage /></MainLayout> } />
                                     <Route path="/aimission" element={ <MainLayout><AIPage /></MainLayout>} />
                                     <Route path="/sns" element={<HomePage />} />
                                     <Route path="/mypage" element={<HomePage />} />

@@ -14,7 +14,7 @@ export const Header = ({ children, color, background}) => {
                </style.LogoText>
            </style.Logo>
             {children}
-            <style.LoginButton onClick={handleClickLogin}>login</style.LoginButton>
+            <style.LoginButton onClick={handleClickLogin}>로그인 해주세요</style.LoginButton>
         </style.Layout>
     );
 };
