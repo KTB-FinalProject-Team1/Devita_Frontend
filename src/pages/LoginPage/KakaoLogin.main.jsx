@@ -8,8 +8,7 @@ function KakaoLogin() {
 
     const handleKakaoLogin = async () => {
         try {
-            // 1. 카카오 로그인 화면으로 리디렉션
-            window.location.href = `${BASE_URL}:8080/oauth2/authorization/kakao`;
+            window.location.href = `${BASE_URL}/oauth2/authorization/kakao`;
         } catch (error) {
             console.error('Error during Kakao login redirection:', error);
         }

@@ -8,10 +8,9 @@ export const Layout = styled.div`
   align-items: center;
   justify-content: space-between;
   color: ${(props) => props.color || "black"};
-  background-color: ${(props) => props.background || "white"} ;
+  background-color: ${(props) => props.background || "transparent"} ;
   position: sticky;
   top: 0;
-    border-radius: 0 0 10px 10px;
 
 `;
 export const Logo = styled.div`
@@ -30,4 +29,31 @@ export const LogoText = styled.text`
 export const LoginButton = styled.button `
     border: none;
     margin-right: 20px;
+    background-color: transparent;
+    &:hover {
+        color: #7DB1FF;
+        font-weight: bold;
+    }
 `;
+export const LoginButtonWrapper = styled.div `
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 400;
+    margin-right: 20px;
+`;
+export const LoginButtonName = styled.text `
+    font-size: 13px;
+    font-weight: bold;
+    margin-right: 5px;
+`;
+export const BackIcon = styled(FaAngleLeft)`
+  position: absolute;
+  left: 10px;
+  font-size: 25px;
+  color: black;
+ 
+`;
+

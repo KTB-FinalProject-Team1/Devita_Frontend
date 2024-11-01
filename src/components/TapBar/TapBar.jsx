@@ -46,7 +46,7 @@ const TabBar = () => {
 
     return (
         <TabBarContainer>
-            <TabButton to="/" end $isActive={location.pathname === '/'}>
+            <TabButton to="/" end $isActive={location.pathname === '/home'}>
                 <FaHome />
                 home
             </TabButton>
@@ -58,7 +58,7 @@ const TabBar = () => {
                 <FaInstagram />
                 sns
             </TabButton>
-            <TabButton to="/login" $isActive={location.pathname === '/login'}>
+            <TabButton to="/mypage" $isActive={location.pathname === '/mypage'}>
                 <FaUser />
                 my
             </TabButton>

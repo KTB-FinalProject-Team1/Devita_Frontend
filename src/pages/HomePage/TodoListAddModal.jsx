@@ -14,6 +14,7 @@ const TodoListAddModal = ({
                               setCategory,
                               setColor,
                               categories,
+                              selectedDate,
                               onOpenCategoryModal
                           }) => {
     const handleAdd = () => {

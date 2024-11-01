@@ -45,7 +45,7 @@ export const ExitButton = styled.button`
     width: 10%;
     height: 100%;
     border: none;
-    font-size: 15px;
+    font-size: 20px;
     color: #7DB1FF;
     background-color: transparent;
 `;
@@ -56,6 +56,16 @@ export const InputWrapper = styled.div`//Wrapper2
     justify-content: center;
     align-items: flex-end;
     border-bottom: 2px solid #7DB1FF;
+
+`;
+export const InputWrapperCategory = styled.div`//Wrapper2
+    width: 80%;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    border-bottom: 2px solid #7DB1FF;
+    margin-bottom: 120px;
 
 `;
 export const Input = styled.input`
@@ -113,3 +123,11 @@ export const CategoryButton = styled.button`
     opacity: ${(props) => (props.isSelected ? 1 : 0.3)}; /* 선택된 버튼은 불투명 */
 `;
 
+
+
+export const ColorInput = styled.input`
+    width: 10%;
+    height: 60%;
+    border: none;
+    background-color: transparent;
+`;

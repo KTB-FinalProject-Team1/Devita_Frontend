@@ -3,10 +3,12 @@ import styled, { ThemeProvider } from 'styled-components';
 import { RecoilRoot } from 'recoil';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainLayout from './components/MainLayout/MainLayout';
+import SubMainLayout from "./components/MainLayout/SubMainLayout";
 import HomePage from './pages/HomePage/Home.main';
 import AIPage from "./pages/AIPage/AI.main";
 import KakaoLoginPage from './pages/LoginPage/KakaoLogin.main';
 import KakaoRedirectHandler from './pages/LoginPage/KakaoRedirectHandler';
+import MyPage from './pages/MyPage/MyPage.main';
 // 테마 설정
 const theme = {
     colors: {
@@ -45,7 +47,6 @@ const Content = styled.div`
   align-items: center;
     overflow-y: auto;
   justify-content: flex-start;
-    background-color: gold;/* 내용이 위에서부터 쌓이도록 설정 */
     
 `;
 function App() {
@@ -58,13 +59,13 @@ function App() {
                         <Wrapper>
                             <Content>
                                 <Routes>
+                                    <Route path="/" element={ <MainLayout><HomePage /></MainLayout> } />
                                     <Route path="/login" element={<KakaoLoginPage/>} />
-                                    <Route path="/" element={<KakaoRedirectHandler />} />
+                                    <Route path="/redirect" element={<KakaoRedirectHandler />} />
                                     <Route path="/onboarding"></Route>
-                                    <Route path="/home" element={ <MainLayout><HomePage /></MainLayout> } />
                                     <Route path="/aimission" element={ <MainLayout><AIPage /></MainLayout>} />
                                     <Route path="/sns" element={<HomePage />} />
-                                    <Route path="/mypage" element={<HomePage />} />
+                                    <Route path="/mypage" element={<SubMainLayout><MyPage /></SubMainLayout>}   />
                                 </Routes>
                             </Content>
 

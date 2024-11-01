@@ -5,6 +5,7 @@ import AddCategoryModal from "./TodoListAddCategory";
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import ButtonBlue from "../../components/Buttons/ButtonBlue";
+import { addTodo } from "../../api/AddTodo";
 
 const TodoList = ({ selectedDate, todos, onAddTodo }) => {
     const [inputValue, setInputValue] = useState('');
@@ -17,12 +18,27 @@ const TodoList = ({ selectedDate, todos, onAddTodo }) => {
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
 
-    const handleAddTodo = (todoText, category) => {
-        const todo = { text: todoText, category, color };
-        console.log('리스트 정보', todo);
-        onAddTodo(selectedDate, todo);
-        closeModal();
+
+    const handleAddTodo = async (todoText, category) => {
+        const todoData = {
+            categoryId: "1", // 예시로 categoryId를 0으로 설정
+            title: todoText,
+            date: selectedDate
+        };
+
+        try {
+            // 서버에 새 할 일 추가 요청
+            const response = await addTodo(todoData.categoryId, todoData.title, todoData.date);
+            console.log('추가된 할 일:', response);
+
+            // 서버 응답에 따라 UI 업데이트
+            onAddTodo(selectedDate, { text: todoText, category, color });
+            closeModal();
+        } catch (response) {
+            console.error('할 일 추가 실패:', response);
+        }
     };
+
     //예시 categories
     const [categories, setCategories] = useState([
         { name: 'Work', color: '#FFA7A7' },
@@ -74,6 +90,7 @@ const TodoList = ({ selectedDate, todos, onAddTodo }) => {
                 setCategory={setCategory}
                 setColor = {setColor}
                 categories={categories}
+                selectedDate={selectedDate}
                 onOpenCategoryModal={() => setIsCategoryModalOpen(true)}
             />
             <AddCategoryModal
