@@ -4,11 +4,11 @@ import TapBar from '../TapBar/TapBar';
 import * as style from './style/MainLayout';
 
 
-const MainLayout = ({children}) => {
+const SubLayout = ({children}) => {
 
     return(
         <style.Wrapper>
-            <Header title={'Devita'}  />
+            <Header title={'Devita'} background='#D6E6FF'/>
             <style.Content>
                 {children}
             </style.Content>
@@ -17,4 +17,4 @@ const MainLayout = ({children}) => {
     )
 }
 
-export default MainLayout;
+export default SubLayout;

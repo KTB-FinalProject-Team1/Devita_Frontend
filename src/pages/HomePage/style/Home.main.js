@@ -13,7 +13,6 @@ export const Wrapper = styled.div`
     }
     scrollbar-width: none;
     padding: 25px;
-    background-color: gold;
   
 
 `;
@@ -25,12 +24,11 @@ export const TodayMissionTotalWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     margin-top: 10px;
-    background-color: beige;
 
 
 `;
 export const TodayMissionTitle = styled.div`
-    width: 84%;
+    width: 95%;
     font-size: 20px;
     font-weight: bold;
 `;
@@ -48,7 +46,7 @@ const borderFadeAnimation = (color) => keyframes`
   }
 `;
 export const TodayMissionWrapper = styled.div`
-  width: 85%;
+  width: 95%;
   height: 50px;
   border-radius: 20px;
   border: 2.5px solid rgba(8, 107, 255, 0); /* 초기에는 투명한 상태 */
