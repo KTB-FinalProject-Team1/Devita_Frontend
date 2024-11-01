@@ -9,6 +9,7 @@ function KakaoLogin() {
     const handleKakaoLogin = async () => {
         try {
             window.location.href = `${BASE_URL}/oauth2/authorization/kakao`;
+            console.log(`${BASE_URL}/oauth2/authorization/kakao`);
         } catch (error) {
             console.error('Error during Kakao login redirection:', error);
         }

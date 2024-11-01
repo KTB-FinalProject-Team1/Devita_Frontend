@@ -1,9 +1,12 @@
 import React from 'react';
 import * as style from './style/MyPage.main';
-import {CharacterLevelWrapper} from "./style/MyPage.main";
+import { useNavigate } from "react-router-dom";
 
 function MyPage() {
-
+    const navigate = useNavigate();
+    const handleClickSetting = () => {
+        navigate("/setting");
+    };
 
     return(
 
@@ -13,7 +16,7 @@ function MyPage() {
                     <style.SubMenuButton>
                         친구 초대
                     </style.SubMenuButton>
-                    <style.SubMenuButton>
+                    <style.SubMenuButton onClick={handleClickSetting}>
                         설정
                     </style.SubMenuButton>
                 </style.SubMenuWrapper>

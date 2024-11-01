@@ -2,13 +2,16 @@ import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { RecoilRoot } from 'recoil';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import MainLayout from './components/MainLayout/MainLayout';
-import SubMainLayout from "./components/MainLayout/SubMainLayout";
+import MainLayout from './components/Layout/MainLayout';
+import SubMainLayout from "./components/Layout/SubMainLayout";
+import SettingLayout from './components/Layout/SettingLayout';
 import HomePage from './pages/HomePage/Home.main';
 import AIPage from "./pages/AIPage/AI.main";
 import KakaoLoginPage from './pages/LoginPage/KakaoLogin.main';
 import KakaoRedirectHandler from './pages/LoginPage/KakaoRedirectHandler';
 import MyPage from './pages/MyPage/MyPage.main';
+import SettingPage from './pages/MyPage/SettingPage.main';
+
 // 테마 설정
 const theme = {
     colors: {
@@ -66,6 +69,7 @@ function App() {
                                     <Route path="/aimission" element={ <MainLayout><AIPage /></MainLayout>} />
                                     <Route path="/sns" element={<HomePage />} />
                                     <Route path="/mypage" element={<SubMainLayout><MyPage /></SubMainLayout>}   />
+                                    <Route path="/setting" element={<SettingLayout><SettingPage/></SettingLayout>}   />
                                 </Routes>
                             </Content>
 

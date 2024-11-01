@@ -39,6 +39,10 @@ export const SubMenuButton = styled.button`
     border: none;
     margin-left: 5px;
     font-weight: bold;
+    background-color: transparent;
+    &:hover{
+        color: #7DB1FF;
+    }
 `;
 
 export const CharacterNameWrapper = styled.div`
