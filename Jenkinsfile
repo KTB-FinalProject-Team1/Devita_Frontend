@@ -8,6 +8,9 @@ pipeline {
         AWS_REGION = 'ap-northeast-2'
         AWS_CREDENTIALS = credentials('ayaan_aws')
         BUILD_DIR = './build'
+        
+        AWS_S3_BUCKET = 'devita-env'
+        S3_ENV_FILE = '.env'
     }
 
     stages {
@@ -36,6 +39,19 @@ pipeline {
 
             }
         }
+        
+        stage('Set ENV') {
+            steps {
+                script {
+                    sh '''
+                    export AWS_ACCESS_KEY_ID=$(echo $AWS_CREDENTIALS | cut -d':' -f1)
+                    export AWS_SECRET_ACCESS_KEY=$(echo $AWS_CREDENTIALS | cut -d':' -f2)
+
+                    aws s3 cp s3://$AWS_S3_BUCKET/$S3_ENV_FILE .env --region $AWS_REGION
+                    '''
+                }
+            }
+        }
 
         stage('Install Dependencies') {
             steps {
@@ -51,12 +67,12 @@ pipeline {
             }
         }
 
-        stage('Set Aws') {
+        stage('Set S3') {
             steps {
                 script {
                     sh '''
-                    export AWS_ACCESS_KEY_ID=$(echo $AWS_CREDENTIALS | cut -d':' -f1)
-                    export AWS_SECRET_ACCESS_KEY=$(echo $AWS_CREDENTIALS | cut -d':' -f2)
+                    // export AWS_ACCESS_KEY_ID=$(echo $AWS_CREDENTIALS | cut -d':' -f1)
+                    // export AWS_SECRET_ACCESS_KEY=$(echo $AWS_CREDENTIALS | cut -d':' -f2)
 
                     aws s3 rm s3://${S3_BUCKET} --recursive --region ${AWS_REGION}
                     aws s3 cp ${BUILD_DIR} s3://${S3_BUCKET}/ --recursive --region ${AWS_REGION}
