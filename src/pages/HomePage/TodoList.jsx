@@ -21,7 +21,7 @@ const TodoList = ({ selectedDate, todos, onAddTodo }) => {
 
     const handleAddTodo = async (todoText, category) => {
         const todoData = {
-            categoryId: "1", // 예시로 categoryId를 0으로 설정
+            categoryId: 1, // 예시로 categoryId를 0으로 설정
             title: todoText,
             date: selectedDate
         };
