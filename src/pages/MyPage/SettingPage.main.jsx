@@ -13,7 +13,7 @@ function SettingPage() {
             <style.Wrapper>
                 <style.ChangeWrapper
                     onClick={() => {
-                        navigate(-1);
+                        navigate('/settingnickname');
                     }}>
                     <style.ChangeTitle>
                         닉네임 변경
@@ -22,8 +22,9 @@ function SettingPage() {
                 </style.ChangeWrapper>
                 <style.ChangeWrapper
                     onClick={() => {
-                        navigate(-1);
-                    }}>
+                        navigate('/settingstack');
+                    }}
+                 >
                     <style.ChangeTitle>
                         개발 역량 설정
                     </style.ChangeTitle>

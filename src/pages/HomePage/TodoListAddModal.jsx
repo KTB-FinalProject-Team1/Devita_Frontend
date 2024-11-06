@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import * as style from './style/TodoListAddModal';
 import ButtonBlue from '../../components/Buttons/ButtonBlue';
@@ -13,15 +13,17 @@ const TodoListAddModal = ({
                               category,
                               setCategory,
                               setColor,
-                              categories,
+                              categories = [],
                               selectedDate,
                               onOpenCategoryModal
                           }) => {
+    const [selectedCategory, setSelectedCategory] = useState({ id: null, name: '' });
     const handleAdd = () => {
-        if (inputValue.trim() && category.trim()) {
-            onSubmit(inputValue, category);
+        if (inputValue.trim() && selectedCategory.name.trim()) {
+            console.log('전달되는가',selectedCategory.id);
+            onSubmit(inputValue, selectedCategory.id);
             setInputValue('');
-            setCategory('');
+            setSelectedCategory({id:null, name:''});
         }
     };
 
@@ -59,15 +61,15 @@ const TodoListAddModal = ({
 
                             <style.CategoryButtonWrapper>
                                 <style.CategoryButtonScrollWrapper>
-                                    {categories.map((item) => (
+                                    {categories.map((item, index) => (
                                         <style.CategoryButton
-                                            key={item.name}
+                                            key={index}
                                             onClick={() => {
-                                                setCategory(item.name);
+                                                setSelectedCategory({ id: item.id, name: item.name });
                                                 setColor(item.color);
                                             }}
                                             color={item.color}
-                                            isSelected={category === item.name}
+                                            isSelected={selectedCategory.name === item.name}
                                         >
                                             {item.name}
                                         </style.CategoryButton>

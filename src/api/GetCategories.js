@@ -11,10 +11,8 @@ export const getCategories = async (categoryId = 0, title, date) => {
             withCredentials: true,
             timeout: 60000
         });
-
-        console.log("Token:", sessionStorage.getItem('accessToken'));
         console.error("카테고리 불러오기  성공", response.data);
-        return response.data;
+        return response.data.data;
 
     } catch (error) {
         console.error("카테고리 불러오기  실패", error.message);

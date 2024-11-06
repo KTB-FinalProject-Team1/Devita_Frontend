@@ -1,6 +1,7 @@
 import React from 'react';
 import * as style from './style/MyPage.main';
 import { useNavigate } from "react-router-dom";
+import CharacterFirst from './CharacterFirst';
 
 function MyPage() {
     const navigate = useNavigate();
@@ -29,6 +30,7 @@ function MyPage() {
                     </style.CharacterText>
                 </style.CharacterNameWrapper>
                 <style.CharacterTotalWrapper>
+                    <CharacterFirst/>
                 </style.CharacterTotalWrapper>
                 <style.CharacterDevelopWrapper>
                     <style.CharacterLevelWrapper>
