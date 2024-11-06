@@ -5,8 +5,6 @@ import * as style from '../HomePage/style/Calendar';
 import {constSelector} from "recoil";
 
 const HomeCalendar = ({ selectDate,onSelectDate }) => {
-    console.log(selectDate);
-    // 현재 주의 시작일을 상태로 관리
     const [currentWeekStart, setCurrentWeekStart] = useState(
         startOfWeek(new Date(), { weekStartsOn: 1 })
     );

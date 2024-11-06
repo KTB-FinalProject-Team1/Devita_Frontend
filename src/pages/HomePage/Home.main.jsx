@@ -8,6 +8,10 @@ function HomePage() {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [todos, setTodos] = useState({});
 
+    const handleDateSelect = (date) => {
+        setSelectedDate(date);
+    };
+
     const addTodo = (date, todo) => {
         setTodos((prevTodos)=>({
             ...prevTodos,
@@ -25,7 +29,7 @@ function HomePage() {
                 </style.TodayMissionWrapper>
             </style.TodayMissionTotalWrapper>
             <style.CalendarWrapper>
-                <Calendar selectDate={selectedDate} onSelectDate={setSelectedDate}></Calendar>
+                <Calendar selectDate={selectedDate} onSelectDate={handleDateSelect}></Calendar>
 
             </style.CalendarWrapper>
             <style.TodoListWrapper>

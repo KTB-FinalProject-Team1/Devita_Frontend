@@ -46,7 +46,7 @@ const TabBar = () => {
 
     return (
         <TabBarContainer>
-            <TabButton to="/" end $isActive={location.pathname === '/home'}>
+            <TabButton to="/" end $isActive={location.pathname === '/'}>
                 <FaHome />
                 home
             </TabButton>

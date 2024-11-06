@@ -11,7 +11,7 @@ function KakaoRedirectHandler() {
         const fetchAccessToken = async () => {
             try {
                 console.log('Attempting to fetch access token...');
-                const response = await axios.post(`${BASE_URL}/api/v1/auth/access`, {}, {
+                const response = await axios.post(`${BASE_URL}/api/v1/auth/user/info`, {}, {
                     headers: {
                         'Content-Type': 'application/json',
                     },
@@ -21,14 +21,13 @@ function KakaoRedirectHandler() {
 
                 if (response.status === 200) {
                     alert('로그인 성공!');
-                    sessionStorage.setItem('accessToken', response.data.data);
-                    console.log('로그인 및 사용자 정보 불러오기 성공:',response.data);
-                    navigation('/')
+                    sessionStorage.setItem('accessToken', response.data.data.accessToken);
+                    console.log('로그인 및 사용자 정보 불러오기 성공:',response.data.data);
                 } else {
                     console.error('Failed to retrieve access token:', response.status);
                 }
             } catch (error) {
-                console.error('Error during access token request:', error);
+                console.error('로그인 리다이렉트 실패:', error);
             }
         };
 
