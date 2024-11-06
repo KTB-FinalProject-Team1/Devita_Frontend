@@ -113,7 +113,7 @@ pipeline {
                         docker images
 
                         # 기존에 실행 중이던 컨테이너가 있다면 삭제 후 새로운 컨테이너 실행
-                        docker run -d --name devita_back -p 3000:3000 $ECR_REGISTRY/$ECR_REPO_NAME:$IMAGE_TAG
+                        docker run -d --name devita_front -p 3000:3000 $ECR_REGISTRY/$ECR_REPO_NAME:$IMAGE_TAG
                         docker ps -a
                         '''
                     }
