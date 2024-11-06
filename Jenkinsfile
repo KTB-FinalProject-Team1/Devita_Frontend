@@ -108,6 +108,7 @@ pipeline {
                         docker ps -qa | xargs -r docker rm
                         # 현재 존재하는 이미지를 삭제할 때만 삭제
                         docker images -q | xargs -r docker rmi
+                        docker system prune --volumes -f
 
                         docker pull $ECR_REGISTRY/$ECR_REPO_NAME:$IMAGE_TAG
                         docker images
