@@ -20,7 +20,7 @@ const TodoList = ({ selectedDate, onAddTodo }) => {
     const dispatch = useDispatch();
     const categories = useSelector((state) => state.categories);
     const allTodos = useSelector((state) => state.todos);
-    const formattedDate = selectedDate.toISOString().split('T')[0];
+    const formattedDate = selectedDate.toLocaleDateString('en-CA');
     const todos = allTodos.filter(todo => todo.date === formattedDate);
 
     const openModal = () => setIsModalOpen(true);
@@ -73,6 +73,9 @@ const TodoList = ({ selectedDate, onAddTodo }) => {
         dispatch(fetchCategories());
         dispatch(fetchTodos('weekly'));
     },[dispatch]);
+    useEffect(() => {
+        console.log("선택한 날짜에 해당하는 할 일 목록:", todos, formattedDate);
+    }, [todos, formattedDate]);
 
     const handleAddTodo = async (todoText, categoryId) => {
         const todoData = {
@@ -85,6 +88,7 @@ const TodoList = ({ selectedDate, onAddTodo }) => {
         try {
             const response = await addTodo(todoData.categoryId, todoData.title, todoData.date);
             console.log('할 일 추가 성공:', response);
+            dispatch(setTodos([...allTodos, { ...todoData, id: response.id }]));
 
             onAddTodo(formattedDate, { text: todoText, category, color });
             closeModal();
@@ -101,9 +105,9 @@ const TodoList = ({ selectedDate, onAddTodo }) => {
             <style.MissionTotalWrapper>
                 <style.MissionFrame>
                     {todos.map((todo, index) => (
-                        <style.MissionWrapper key={todo.id} category={todo.category} color={todo.color}>
+                        <style.MissionWrapper key={`${todo.todoId}-${index}`} category={todo.categoryId} color={todo.color}>
                             <style.MissionCheckWrapper />
-                            <style.MissionTextWrapper>{todo.text}</style.MissionTextWrapper>
+                            <style.MissionTextWrapper>{todo.title}</style.MissionTextWrapper>
                             <style.MissionTypeWrapper color={todo.color}>{todo.category}</style.MissionTypeWrapper>
                             <style.MissionEditWrapper />
                         </style.MissionWrapper>
