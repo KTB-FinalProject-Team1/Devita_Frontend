@@ -20,11 +20,6 @@ export const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    overflow-y: auto;
-    ::-webkit-scrollbar{
-        display: none;
-    }
-    scrollbar-width: none;
     
 `;
 

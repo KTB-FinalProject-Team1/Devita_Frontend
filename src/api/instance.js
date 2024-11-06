@@ -6,7 +6,7 @@ export const instance = axios.create({
     withCredentials: true,
     headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${sessionStorage.getItem('accessToken') || ''}`,
+        Authorization: 'Bearer ' + sessionStorage.getItem('accessToken'),
 
     },
     timeout: 60000,

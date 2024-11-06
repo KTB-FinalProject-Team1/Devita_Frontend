@@ -22,6 +22,7 @@ function KakaoRedirectHandler() {
                 if (response.status === 200) {
                     alert('로그인 성공!');
                     sessionStorage.setItem('accessToken', response.data.data);
+                    console.log('로그인 및 사용자 정보 불러오기 성공:',response.data);
                     navigation('/')
                 } else {
                     console.error('Failed to retrieve access token:', response.status);

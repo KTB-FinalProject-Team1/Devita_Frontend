@@ -11,7 +11,10 @@ import KakaoLoginPage from './pages/LoginPage/KakaoLogin.main';
 import KakaoRedirectHandler from './pages/LoginPage/KakaoRedirectHandler';
 import MyPage from './pages/MyPage/MyPage.main';
 import SettingPage from './pages/MyPage/SettingPage.main';
-
+import SettingNickName from "./pages/MyPage/SettingPage.nickname";
+import SettingStack from './pages/MyPage/SettingPage.stack';
+import OnboardingPage from './pages/OnboardingPage/Onboarding.nickname';
+import OnboardingStackPage from './pages/OnboardingPage/Onboarding.stack';
 // 테마 설정
 const theme = {
     colors: {
@@ -62,6 +65,8 @@ function App() {
                         <Wrapper>
                             <Content>
                                 <Routes>
+                                    <Route path="/onboarding" element={ <OnboardingPage /> } />
+                                    <Route path="/onboardingstack" element={ <OnboardingStackPage /> } />
                                     <Route path="/" element={ <MainLayout><HomePage /></MainLayout> } />
                                     <Route path="/login" element={<KakaoLoginPage/>} />
                                     <Route path="/redirect" element={<KakaoRedirectHandler />} />
@@ -70,6 +75,9 @@ function App() {
                                     <Route path="/sns" element={<HomePage />} />
                                     <Route path="/mypage" element={<SubMainLayout><MyPage /></SubMainLayout>}   />
                                     <Route path="/setting" element={<SettingLayout><SettingPage/></SettingLayout>}   />
+                                    <Route path="/settingnickname" element={<SettingLayout><SettingNickName/></SettingLayout>}   />
+                                    <Route path="/settingstack" element={<SettingLayout><SettingStack/></SettingLayout>}   />
+
                                 </Routes>
                             </Content>
 

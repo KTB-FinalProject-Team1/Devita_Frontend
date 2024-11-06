@@ -47,7 +47,7 @@ export const SubMenuButton = styled.button`
 
 export const CharacterNameWrapper = styled.div`
     width: 100%;
-    height:10%;
+    height:5%;
     display: flex;
     align-items: flex-end;
 `;
@@ -66,7 +66,10 @@ export const CharacterText = styled.text`
 
 export const CharacterTotalWrapper = styled.div`
     width: 100%;
-    height: 43%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
 `;
 
