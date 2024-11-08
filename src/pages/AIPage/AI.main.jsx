@@ -3,37 +3,59 @@ import * as style from "./style/AI.main";
 import ChatBubble from "../../components/ChatBubble/ChatBubble";
 import CategoryData from "../../assets/DummyData/Category";
 import ButtonBlue from "../../components/Buttons/ButtonBlue";
+import { freeMissionGet } from "../../api/FreeMissionGet";
 
 function AIPage() {
     const [selectedTopCategory, setSelectedTopCategory] = useState(null);
     const [selectedSubCategory, setSelectedSubCategory] = useState(null);
     const [subCategories, setSubCategories] = useState([]);
     const [isGenerated, setIsGenerated ] = useState(false);
+    const [freeMissions, setFreeMissions] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleTopCategorySelect = (category) => {
         setSelectedTopCategory(category);
         setSelectedSubCategory(null);
         setIsGenerated(false);
-        console.log(selectedTopCategory);
     };
     const handleSubCategorySelect = (category) => {
         setSelectedSubCategory(category);
-        console.log(selectedSubCategory);
     };
-    const handleGenerateButtonClick = () => {
+    const handleGenerateButtonClick = async () => {
         if (selectedTopCategory && selectedSubCategory) {
-            setIsGenerated(true);
-            console.log(selectedTopCategory, selectedSubCategory);
+            setIsLoading(true);
+            try{
+                const response = await freeMissionGet(selectedSubCategory);
+                setFreeMissions(response.data);
+                setIsGenerated(true);
+                setTimeout(()=>{
+                    setIsLoading(false);
+                }, 2000);
+            }catch(error){
+                console.log('자율 미션 호출 실패', error);
+            }
         }else{
             alert('카테고리를 먼저 선택하세요');
         }
     }
     useEffect(() => {
         if (selectedTopCategory) {
+            console.log("Selected Top Category:", selectedTopCategory);
             const selectedCategory = CategoryData.find((item) => item.name === selectedTopCategory);
             setSubCategories(selectedCategory ? selectedCategory.subcategories : []);
         }
     }, [selectedTopCategory]);
+
+    useEffect(() => {
+        if (selectedSubCategory) {
+            console.log("Selected Sub Category:", selectedSubCategory);
+        }
+    }, [selectedSubCategory]);
+    useEffect(() => {
+        if (freeMissions) {
+            console.log("Maked free Missions:", freeMissions);
+        }
+    }, [freeMissions]);
 
 
     return (
@@ -76,22 +98,32 @@ function AIPage() {
                         </style.GenerateButton>
 
                     </style.GenerateButtonWrapper>
-                )}
-                {isGenerated ? (
-                    <style.MissionWrapper>
-                        <style.MissionSelectWrapper>
-                            <ChatBubble position="right" width="80%" height="160px">{selectedTopCategory}{selectedSubCategory}</ChatBubble>
-                        </style.MissionSelectWrapper>
-                        <style.MissionSelectButtonWrapper>
-                            <style.MissionRegenerateButton onClick = {()=>{alert('hello')}}>다시 생성하기</style.MissionRegenerateButton>
-                            <style.MissionRegenerateButton onClick = {()=>{alert('hellotwo')}}>투두에 추가하기</style.MissionRegenerateButton>
-                        </style.MissionSelectButtonWrapper>
-                    </style.MissionWrapper>
-                ):(
-                    <div>
-                        <p>로딩중</p>
-                    </div>
-                    )}
+                )}{
+                    isLoading ? (
+                        <div>
+                            <p>로딩 중,,,,</p>
+                        </div>
+                    ): isGenerated ? (
+                            <style.MissionWrapper>
+                                <style.MissionSelectWrapper>
+                                    <ChatBubble position="right" width="80%" height="160px" direction="column" justify="center" align="flex-start">
+                                        {freeMissions.map((mission) => (
+                                            <style.MissionEachWrapper key={mission.id} level={mission.level} onClick={() => {alert(`${mission.missionTitle} 선택`)}}>
+                                                <style.MissionEachText>{mission.missionTitle}</style.MissionEachText>
+                                            </style.MissionEachWrapper>
+                                        ))}
+                                    </ChatBubble>
+                                </style.MissionSelectWrapper>
+                                <style.MissionSelectButtonWrapper>
+                                    <style.MissionRegenerateButton onClick = {()=>{alert('hello')}}>다시 생성하기</style.MissionRegenerateButton>
+                                    <style.MissionRegenerateButton onClick = {()=>{alert('hellotwo')}}>투두에 추가하기</style.MissionRegenerateButton>
+                                </style.MissionSelectButtonWrapper>
+                            </style.MissionWrapper>
+                        ):(
+                            <div></div>
+                        )
+            }
+
 
             </style.SubAIWrapper>
         </style.TotalWrapper>

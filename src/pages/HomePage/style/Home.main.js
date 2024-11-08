@@ -1,9 +1,7 @@
 import styled, {keyframes} from "styled-components";
 
 export const Wrapper = styled.div`
-    flex:1;
-    width: 90%;
-    height: 100vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,53 +10,24 @@ export const Wrapper = styled.div`
         display: none;
     }
     scrollbar-width: none;
-    padding: 25px;
-  
+    background-color: #D6E6FF;
+
 
 `;
-export const TodayMissionTotalWrapper = styled.div`
-    width: 90%;
-    height: 15%;
-    flex-grow:1;
+
+export const SubWrapper = styled.div`
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 20px;
     margin-top: 10px;
-
-
-`;
-export const TodayMissionTitle = styled.div`
-    width: 95%;
-    font-size: 20px;
-    font-weight: bold;
-`;
-
-const borderFadeAnimation = (color) => keyframes`
     
-  0% {
-    border-color: rgba(${color}, 0); /* 완전히 투명한 상태 */
-  }
-  50% {
-      border-color: rgba(${color}, 1); /* 완전히 불투명한 상태 */
-  }
-  100% {
-      border-color: rgba(${color}, 0); /* 다시 완전히 투명해짐 */
-  }
 `;
-export const TodayMissionWrapper = styled.div`
-  width: 95%;
-  height: 50px;
-  border-radius: 20px;
-  border: 2.5px solid rgba(8, 107, 255, 0); /* 초기에는 투명한 상태 */
-  margin-top: 5px;
-  
-  /* 애니메이션에 color를 전달하여 적용 */
-  animation: ${({ color = '8, 107, 255' }) => borderFadeAnimation(color)} 4s linear infinite;
-`;
-
-export const TodayMissionText = styled.text``;
 export const CalendarWrapper = styled.div`
-    width: 100%;
+    width: 90%;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -66,7 +35,7 @@ export const CalendarWrapper = styled.div`
     
 `;
 export const TodoListWrapper = styled.div`
-    width: 100%;
+    width: 90%;
     flex-grow:1.5;
     display: flex;
     flex-direction: column;

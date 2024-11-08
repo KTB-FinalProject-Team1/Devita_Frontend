@@ -156,6 +156,7 @@ export const GenerateButton = styled.button`
     &:hover {
         background-color: dodgerblue;
     }
+    margin-top: 10px;
 `;
 
 export const MissionWrapper = styled.div`
@@ -168,7 +169,35 @@ export const MissionWrapper = styled.div`
 
 export const MissionSelectWrapper = styled.div`
 `;
+export const MissionEachWrapper = styled.button`
+    width: 90%;
+    height: 27%;
+    border-radius: 10px;
+    margin-top: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid ${({ level }) =>
+            level === 1 ? '#DEDEDE' :
+                    level === 2 ? '#FFDD57' :
+                            '#FF6B6B'};
+    background-color: ${({ level }) =>
+            level === 1 ? '#F9F9F9' :
+                    level === 2 ? '#FFF4CC' :
+                            '#FFE5E5'};
+    &:hover {
+        border: 1px solid #7DB1FF;
+        background-color: #B8D4FF;
+    }
+`;
 
+export const MissionEachText = styled.div`
+    font-size: 10px;
+    width: 190px;
+    display: flex;
+    align-items: flex-start;
+    overflow-x: auto;
+`
 export const MissionSelectButtonWrapper = styled.div`
     width: 100%;
     height: 40px;
@@ -190,3 +219,5 @@ export const MissionRegenerateButton = styled.button`
     font-weight: bold;
     
 `;
+
+

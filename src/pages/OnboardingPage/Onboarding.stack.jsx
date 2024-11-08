@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import * as style from './style/Onboarding.main';
 import ButtonBlue from "../../components/Buttons/ButtonBlue";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CategoryData from "../../assets/DummyData/Category";
+import { settingStack } from "../../api/PutSettingStack";
 
 
 function OnboardingStack(){
@@ -18,9 +19,16 @@ function OnboardingStack(){
             }
         })
     };
-    const handleConfirmClick = ()=>{
+    const handleConfirmClick = async ()=>{
         console.log('사용자가 고른 스택',selectedSubCategories);
-        navigate('/');
+        try {
+            await settingStack(selectedSubCategories); // 선택한 카테고리를 API에 전송
+            console.log("스택 설정 완료되었습니다.");
+            navigate('/'); // 성공적으로 설정 후 페이지 이동
+        } catch (error) {
+            console.error("스택 설정 중 오류 발생:", error);
+            alert("스택 설정에 실패했습니다. 다시 시도해주세요.");
+        }
 
     };
 

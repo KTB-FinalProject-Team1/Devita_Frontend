@@ -8,7 +8,6 @@ const SubLayout = ({children}) => {
 
     return(
         <style.Wrapper>
-            <Header title={'Devita'} background='#D6E6FF'/>
             <style.Content>
                 {children}
             </style.Content>

@@ -20,7 +20,9 @@ const Bubble = styled.div`
     font-size: 13px;
     font-weight: bold;
     display: flex;
-    align-items: center;
+    flex-direction: ${(props) => props.direction || 'row'};
+    align-items: ${(props) => props.align};
+    justify-content: ${(props) => props.justify};
     
     &::after{
         content: '';
@@ -36,10 +38,10 @@ const Bubble = styled.div`
 `;
 
 
-const ChatBubble = ({children, position = 'left', width, height}) => {
+const ChatBubble = ({children, position = 'left', width, height, direction, justify, align}) => {
     return(
         <BubbleWrapper position={position}>
-            <Bubble position={position} width={width} height={height}>
+            <Bubble position={position} width={width} height={height} direction={direction} justify={justify} align={align}>
                 {children}
             </Bubble>
         </BubbleWrapper>

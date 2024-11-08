@@ -8,7 +8,7 @@ const MainLayout = ({children}) => {
 
     return(
         <style.Wrapper>
-            <Header title={'Devita'}  />
+            <Header title={'Devita'} background ='#D6E6FF' />
             <style.Content>
                 {children}
             </style.Content>

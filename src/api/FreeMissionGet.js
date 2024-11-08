@@ -1,26 +1,22 @@
 import axios from 'axios';
 
-export const addTodo = async (categoryId = 0, title, date) => {
-    const todoData = { categoryId, title, date };
-
-    console.log("전송할 데이터:", todoData); // 데이터 확인용 콘솔 출력
+export const freeMissionGet = async (subCategory) => {
 
     try {
         const response = await axios.post(
-            `${process.env.REACT_APP_BASE_URL}/api/v1/todo`,
-            todoData,
+            `${process.env.REACT_APP_BASE_URL}/api/v1/mission/free`,
+            {subCategory},
             {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${sessionStorage.getItem('accessToken')}`
                 },
-                withCredentials: true,
                 timeout: 20000
             }
         );
         return response.data;
     } catch (error) {
-        console.error("투두리스트 추가 실패:", error.message);
+        console.error("자율 미션 호출 실패:", error.message);
         throw error;
     }
 };

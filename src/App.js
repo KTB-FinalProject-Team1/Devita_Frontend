@@ -71,7 +71,7 @@ function App() {
                                     <Route path="/login" element={<KakaoLoginPage/>} />
                                     <Route path="/redirect" element={<KakaoRedirectHandler />} />
                                     <Route path="/onboarding"></Route>
-                                    <Route path="/aimission" element={ <MainLayout><AIPage /></MainLayout>} />
+                                    <Route path="/aimission" element={ <SubMainLayout><AIPage /></SubMainLayout>} />
                                     <Route path="/sns" element={<HomePage />} />
                                     <Route path="/mypage" element={<SubMainLayout><MyPage /></SubMainLayout>}   />
                                     <Route path="/setting" element={<SettingLayout><SettingPage/></SettingLayout>}   />

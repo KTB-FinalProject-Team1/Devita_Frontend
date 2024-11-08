@@ -8,6 +8,7 @@ export const Header = ({ color, background , title, isBack}) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [username, setUsername] = useState("");
     const navigate = useNavigate();
+    const userNickname = sessionStorage.getItem("userNickname");
 
     // 토큰 유효성 검증 함수
     const checkTokenValidity = () => {
@@ -58,7 +59,7 @@ export const Header = ({ color, background , title, isBack}) => {
             )}
             {isAuthenticated ? (
                 <style.LoginButtonWrapper>
-                    <style.LoginButtonName>{username}</style.LoginButtonName>
+                    <style.LoginButtonName>{userNickname}</style.LoginButtonName>
                     님 환영합니다
                 </style.LoginButtonWrapper>
                 ) : (
