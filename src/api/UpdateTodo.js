@@ -15,6 +15,7 @@ export const updateTodo = async (todoId) => {
                 timeout: 20000
             }
         );
+        console.log(response.data);
         return response.data;
     } catch (error) {
         console.error("투두리스트 업데이트 실패:", error.message);

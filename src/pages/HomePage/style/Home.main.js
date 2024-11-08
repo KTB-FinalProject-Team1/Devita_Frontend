@@ -22,7 +22,7 @@ export const SubWrapper = styled.div`
     align-items: center;
     justify-content: center;
     background-color: white;
-    border-radius: 20px;
+    border-radius: 20px 20px 0px 0px;
     margin-top: 10px;
     
 `;

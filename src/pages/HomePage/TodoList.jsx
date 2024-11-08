@@ -43,25 +43,28 @@ const TodoList = ({ selectedDate, onAddTodo }) => {
     const closeCategoryModal = () => setIsCategoryModalOpen(false);
 
     const handleToggleClick = async (todoId) => {
-        const isCurrentlyChecked = clickedTodos[todoId] || false;
-        const newIsChecked = !isCurrentlyChecked; // 상태 반전
-        setClickedTodos((prevClickedTodos) => ({
-            ...prevClickedTodos,
-            [todoId]: newIsChecked,
-        }));
-
-        const newStatus = newIsChecked ? true : false;
 
         try {
-            await updateTodo(todoId, newStatus); // 업데이트 API 호출
+            const updatedTodo = await updateTodo(todoId);
+            setClickedTodos((prevClickedTodos) => ({
+                ...prevClickedTodos,
+                [todoId]: updatedTodo.status,
+            }))
             dispatch(setTodos(todos.map(t =>
-                t.todoId === todoId ? { ...t, isChecked: newIsChecked, status: newStatus } : t
+                t.todoId === todoId ? { ...t, isChecked: updatedTodo.status, status: updatedTodo.status} : t
             )));
-            console.log('투두 성공',todoId, newStatus);
+            console.log('투두 성공',todoId, updatedTodo.status);
         } catch (error) {
             console.error('업데이트 실패', error, todoId);
         }
     };
+    useEffect(()=>{
+        dispatch(setTodos(todos.map(todo => ({
+            ...todo,
+            isChecked: clickedTodos[todo.todoId] || false,
+        }))));
+    },[clickedTodos, dispatch]);
+
     const handleAddTodo = async (todoText, categoryId) => {
         const todoData = {
             categoryId: categoryId,
