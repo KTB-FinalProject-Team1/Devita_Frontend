@@ -1,10 +1,11 @@
 import { instance } from "./instance";
 
-export const addCategory = async (name) => {
+export const addCategory = async (name, color) => {
     
     try {
         const response = await instance.post('/api/v1/todo/category', {
-            name
+            name,
+            color
         });
         return response.data;
 

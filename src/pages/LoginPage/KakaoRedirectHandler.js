@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 function KakaoRedirectHandler() {
     const BASE_URL = process.env.REACT_APP_BASE_URL;
-    const navigation = useNavigate();
+    const navigate = useNavigate();
 
     useEffect(() => {
         // 페이지 로드 시 access token 요청
@@ -22,6 +22,8 @@ function KakaoRedirectHandler() {
                 if (response.status === 200) {
                     alert('로그인 성공!');
                     sessionStorage.setItem('accessToken', response.data.data.accessToken);
+                    sessionStorage.setItem('userNickname', response.data.data.nickname);
+                    navigate('/');
                     console.log('로그인 및 사용자 정보 불러오기 성공:',response.data.data);
                 } else {
                     console.error('Failed to retrieve access token:', response.status);

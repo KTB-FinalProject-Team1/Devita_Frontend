@@ -56,7 +56,7 @@ height: 200px;
 
 
 export const MissionFrame = styled.div`
-width: 280px;
+width: 270px;
     height: 220px;
     overflow-y: auto;
 
@@ -76,7 +76,7 @@ const borderFadeAnimation = (color) => keyframes`
 `;
 
 export const MissionWrapper = styled.div`
-  width: 260px;
+  width: 90%;
   height: 45px;
   display: flex;
   align-items: center;
@@ -103,8 +103,8 @@ export const MissionTextWrapper = styled.div`
     align-items: center;
     justify-content: flex-start;
     white-space: nowrap;
-    font-size: 13px;
-    background-color: #F2F2F2;
+    font-size: 11px;
+    
     ::-webkit-scrollbar{
         height: 2px;
     }
@@ -116,11 +116,18 @@ export const MissionTextWrapper = styled.div`
         backgroound-color: #555;
     }
     margin-left: 10px;
+    text-decoration: ${(props) => (props.isChecked ? 'line-through' : 'none')};
 `;
-export const MissionCheckWrapper = styled.div`
-    width: 10%;
-    height: 70%;
-    background-color: gold;
+export const MissionCheckWrapper = styled.button`
+    width: 20px;
+    height: 20px;
+    border-radius: 50%; 
+    border: 2px solid ${(props)=> props.color};
+    background-color:transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 `;
 export const MissionTypeWrapper = styled.div`
     width: 15%;
@@ -138,34 +145,22 @@ export const MissionEditWrapper = styled.div`
     width: 10%;
     height: 70%;
     margin-left: 5px;
-    background-color: gray;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    
 `;
 
-export const AddButtonWrapper = styled.div`
-    width: 210px;
-    height: 40px;
-    background-color: #E1E1E1;
+export const MissionEditButton = styled.button`
+    border: none;
+    font-size: 15px;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-radius: 20px;
-    margin-top: 10px;
-
-`;
-
-export const AddMissionButton = styled.button`
-    width: 80%;
-    height: 13%;
-    border: none;
-    border-radius: 10px;
-    background-color: #7DB1FF;
-    font-size: 16px;
-    font-weight: bold;
+    margin-top: 2px;
+    background-color: transparent;
     
-;
-`;
-
+`
 
 
 

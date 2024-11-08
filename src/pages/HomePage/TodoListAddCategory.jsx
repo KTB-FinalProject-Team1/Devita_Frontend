@@ -16,8 +16,9 @@ const AddCategoryModal = ({ isOpen, onClose, categories, setCategories }) => {
                 name: newCategoryName,
                 color: newCategoryColor,
             };
+            console.log(newCategory);
             try{
-                const response = await addCategory(newCategoryName);
+                const response = await addCategory(newCategoryName, newCategoryColor);
                 console.log('카테고리 추가 성공', response);
                 setCategories([...categories, newCategory]);
                 setNewCategoryName('');

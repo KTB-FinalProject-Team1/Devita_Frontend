@@ -3,11 +3,13 @@ import * as style from './style/TodoList';
 import TodoListAddModal from './TodoListAddModal';
 import AddCategoryModal from "./TodoListAddCategory";
 import ButtonBlue from "../../components/Buttons/ButtonBlue";
+import TodoItem from './TodoItem';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTodos, setTodos } from '../../store/todoSlice';
 import { fetchCategories, setCategories } from '../../store/categoriesSlice';
 import { addTodo } from '../../api/AddTodo';
+import { updateTodo } from "../../api/UpdateTodo";
 
 const TodoList = ({ selectedDate, onAddTodo }) => {
     const [inputValue, setInputValue] = useState('');
@@ -15,71 +17,54 @@ const TodoList = ({ selectedDate, onAddTodo }) => {
     const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
     const [category, setCategory] = useState('');
     const [color, setColor] = useState('');
+    const [clickedTodos, setClickedTodos] = useState({});
 
     {/*redux-store로 todo,category 상태관리*/}
     const dispatch = useDispatch();
     const categories = useSelector((state) => state.categories);
     const allTodos = useSelector((state) => state.todos);
+
     const formattedDate = selectedDate.toLocaleDateString('en-CA');
-    const todos = allTodos.filter(todo => todo.date === formattedDate);
+    const todos = allTodos
+        .filter(todo => todo.date === formattedDate)
+        .map(todo => {
+            const category = categories.find(cat => cat.id === todo.categoryId);
+            return {
+                ...todo,
+                color: category ? category.color : '#CCCCCC', // 기본 색상 설정
+                categoryName: category ? category.name : 'Unknown',
+                isChecked: clickedTodos[todo.todoId] || false,
+            };
+        });
 
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
     const openCategoryModal = () => setIsCategoryModalOpen(true);
     const closeCategoryModal = () => setIsCategoryModalOpen(false);
 
-    {/* useEffect(() => {
-        const fetchTodos = async () => {
-            try {
-                const todosData = await getTodo('weekly');
-                setAllTodos(todosData);
-                console.log("불러온 할 일 목록:", todosData);
-            } catch (error) {
-                console.error("todolist 불러오기 실패:", error);
-            }
-        };
+    const handleToggleClick = async (todoId) => {
+        const isCurrentlyChecked = clickedTodos[todoId] || false;
+        const newIsChecked = !isCurrentlyChecked; // 상태 반전
+        setClickedTodos((prevClickedTodos) => ({
+            ...prevClickedTodos,
+            [todoId]: newIsChecked,
+        }));
 
-        fetchTodos();
-    }, []);
+        const newStatus = newIsChecked ? true : false;
 
-    useEffect(() => {
-        const fetchCategories = async () => {
-            try {
-                const categoriesData = await getCategories();
-
-                const mappedCategories = categoriesData.map(category => ({
-                    ...category,
-                    color: category.color || '#CCCCCC' // 기본 색상 설정
-                }));
-
-                setCategories(prevCategories => [
-                    ...prevCategories,
-                    ...mappedCategories
-                ]);
-            } catch (error) {
-                console.error("카테고리 불러오기 실패", error);
-            }
-        };
-
-        fetchCategories();
-    }, []);
-
-    useEffect(() => {
-        const selectedDateTodos = allTodos.filter(todo => todo.date === formattedDate);
-        setTodos(selectedDateTodos);
-    }, [selectedDate, allTodos]); */}
-
-    useEffect(() => {
-        dispatch(fetchCategories());
-        dispatch(fetchTodos('weekly'));
-    },[dispatch]);
-    useEffect(() => {
-        console.log("선택한 날짜에 해당하는 할 일 목록:", todos, formattedDate);
-    }, [todos, formattedDate]);
-
+        try {
+            await updateTodo(todoId, newStatus); // 업데이트 API 호출
+            dispatch(setTodos(todos.map(t =>
+                t.todoId === todoId ? { ...t, isChecked: newIsChecked, status: newStatus } : t
+            )));
+            console.log('투두 성공',todoId, newStatus);
+        } catch (error) {
+            console.error('업데이트 실패', error, todoId);
+        }
+    };
     const handleAddTodo = async (todoText, categoryId) => {
         const todoData = {
-            categoryId: categoryId, // 예시로 categoryId를 설정
+            categoryId: categoryId,
             title: todoText,
             date: formattedDate
         };
@@ -97,6 +82,22 @@ const TodoList = ({ selectedDate, onAddTodo }) => {
         }
     };
 
+    const handleDeleteTodo = (todoId) => {
+        const updatedTodos = allTodos.filter(todo => todo.todoId !== todoId);
+        dispatch(setTodos(updatedTodos)); // 상태에서 삭제된 Todo 반영
+    };
+
+
+
+    useEffect(() => {
+        dispatch(fetchCategories());
+        dispatch(fetchTodos('weekly'));
+    },[dispatch]);
+    useEffect(() => {
+        console.log("선택한 날짜에 해당하는 할 일 목록:", todos, formattedDate);
+    }, [todos, formattedDate]);
+
+
     return (
         <style.TotalWrapper>
             <style.DateWrapper>
@@ -105,12 +106,12 @@ const TodoList = ({ selectedDate, onAddTodo }) => {
             <style.MissionTotalWrapper>
                 <style.MissionFrame>
                     {todos.map((todo, index) => (
-                        <style.MissionWrapper key={`${todo.todoId}-${index}`} category={todo.categoryId} color={todo.color}>
-                            <style.MissionCheckWrapper />
-                            <style.MissionTextWrapper>{todo.title}</style.MissionTextWrapper>
-                            <style.MissionTypeWrapper color={todo.color}>{todo.category}</style.MissionTypeWrapper>
-                            <style.MissionEditWrapper />
-                        </style.MissionWrapper>
+                        <TodoItem
+                        key={`${index}-${index}`}
+                        todo={todo}
+                        onCheckClick={() => handleToggleClick(todo.todoId)}
+                        onDelete={() => handleDeleteTodo(todo.item)}
+                        isChecked={todo.isChecked}/>
                     ))}
                 </style.MissionFrame>
             </style.MissionTotalWrapper>

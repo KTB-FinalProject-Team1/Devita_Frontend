@@ -9,7 +9,7 @@ export const getCategories = async (categoryId = 0, title, date) => {
                 Authorization: 'Bearer ' + sessionStorage.getItem('accessToken'),
             },
             withCredentials: true,
-            timeout: 60000
+            timeout: 20000
         });
         console.error("카테고리 불러오기  성공", response.data);
         return response.data.data;
