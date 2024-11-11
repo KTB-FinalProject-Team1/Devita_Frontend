@@ -4,7 +4,7 @@ export const getCharacterInfo = async () => {
 
     try {
         const response = await axios.get(
-            `${process.env.REACT_APP_BASE_URL}/api/v1/users/me`,
+            `${import.meta.env.VITE_BASE_URL}/api/v1/users/me`,
             {
                 headers: {
                     'Content-Type': 'application/json',

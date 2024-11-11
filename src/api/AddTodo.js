@@ -7,7 +7,7 @@ export const addTodo = async (categoryId = 0, title, date) => {
 
     try {
         const response = await axios.post(
-            `${process.env.REACT_APP_BASE_URL}/api/v1/todo`,
+            `${import.meta.env.VITE_BASE_URL}/api/v1/todo`,
             todoData,
             {
                 headers: {

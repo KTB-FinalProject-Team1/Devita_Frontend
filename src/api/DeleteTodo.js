@@ -4,7 +4,7 @@ export const deleteTodo = async (todoId) => {
 
     try {
         const response = await axios.delete(
-            `${process.env.REACT_APP_BASE_URL}/api/v1/todo/${todoId}`,
+            `${import.meta.env.VITE_BASE_URL}/api/v1/todo/${todoId}`,
             {
                 headers: {
                     'Content-Type': 'application/json',

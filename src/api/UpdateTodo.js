@@ -4,7 +4,7 @@ export const updateTodo = async (todoId) => {
 
     try {
         const response = await axios.put(
-            `${process.env.REACT_APP_BASE_URL}/api/v1/todo/${todoId}/toggle`,
+            `${import.meta.env.VITE_BASE_URL}/api/v1/todo/${todoId}/toggle`,
             {},
             {
                 headers: {
