@@ -3,7 +3,8 @@ import * as style from "./style/AI.main";
 import ChatBubble from "../../components/ChatBubble/ChatBubble";
 import CategoryData from "../../assets/DummyData/Category";
 import ButtonBlue from "../../components/Buttons/ButtonBlue";
-import { freeMissionGet } from "../../api/FreeMissionGet";
+import { getFreeMission } from "../../api/GetFreeMission";
+import  bellImg  from "../../assets/img/bell.png";
 
 function AIPage() {
     const [selectedTopCategory, setSelectedTopCategory] = useState(null);
@@ -11,6 +12,7 @@ function AIPage() {
     const [subCategories, setSubCategories] = useState([]);
     const [isGenerated, setIsGenerated ] = useState(false);
     const [freeMissions, setFreeMissions] = useState([]);
+    const [selectedMission, setSelectedMission] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
     const handleTopCategorySelect = (category) => {
@@ -25,7 +27,7 @@ function AIPage() {
         if (selectedTopCategory && selectedSubCategory) {
             setIsLoading(true);
             try{
-                const response = await freeMissionGet(selectedSubCategory);
+                const response = await getFreeMission(selectedSubCategory);
                 setFreeMissions(response.data);
                 setIsGenerated(true);
                 setTimeout(()=>{
@@ -37,6 +39,10 @@ function AIPage() {
         }else{
             alert('카테고리를 먼저 선택하세요');
         }
+    }
+    const handleMissionClick = (mission) => {
+        setSelectedMission(mission);
+        alert(`${mission.missionTitle}`);
     }
     useEffect(() => {
         if (selectedTopCategory) {
@@ -69,7 +75,12 @@ function AIPage() {
                         <style.TopCategorySelectScroll>
 
                             {CategoryData.map((item) => (
-                                <style.TopCategoryButton onClick={() => handleTopCategorySelect(item.name)}>{item.name}
+                                <style.TopCategoryButton
+                                    key={item.id}
+                                    onClick={() => handleTopCategorySelect(item.name)}
+                                    selected={selectedTopCategory === item.name}
+                                >
+                                    {item.name}
                                 </style.TopCategoryButton>
                             ))}
                         </style.TopCategorySelectScroll>
@@ -82,9 +93,11 @@ function AIPage() {
                         </ChatBubble>
                         <style.SubCategorySelectWrapper>
                             <style.SubCategorySelectScroll>
-                                {subCategories.map((subcategory) => (
-                                    <style.SubCategoryButton key={subcategory} onClick={() => handleSubCategorySelect(subcategory)}>
-                                        {subcategory}
+                                {subCategories.map((item) => (
+                                    <style.SubCategoryButton key={item.id} onClick={() => handleSubCategorySelect(item)}
+                                                             selected={selectedSubCategory === item}
+                                    >
+                                        {item}
                                     </style.SubCategoryButton>
                                 ))}
                             </style.SubCategorySelectScroll>
@@ -100,22 +113,23 @@ function AIPage() {
                     </style.GenerateButtonWrapper>
                 )}{
                     isLoading ? (
-                        <div>
-                            <p>로딩 중,,,,</p>
-                        </div>
+                        <style.LoadingWrapper>
+                            <style.LoadingText>로딩중...</style.LoadingText>
+                            <style.LoadingImg src={bellImg}/>
+                        </style.LoadingWrapper>
                     ): isGenerated ? (
                             <style.MissionWrapper>
                                 <style.MissionSelectWrapper>
                                     <ChatBubble position="right" width="80%" height="160px" direction="column" justify="center" align="flex-start">
                                         {freeMissions.map((mission) => (
-                                            <style.MissionEachWrapper key={mission.id} level={mission.level} onClick={() => {alert(`${mission.missionTitle} 선택`)}}>
+                                            <style.MissionEachWrapper key={mission.id} level={mission.level} onClick={handleMissionClick}>
                                                 <style.MissionEachText>{mission.missionTitle}</style.MissionEachText>
                                             </style.MissionEachWrapper>
                                         ))}
                                     </ChatBubble>
                                 </style.MissionSelectWrapper>
                                 <style.MissionSelectButtonWrapper>
-                                    <style.MissionRegenerateButton onClick = {()=>{alert('hello')}}>다시 생성하기</style.MissionRegenerateButton>
+                                    <style.MissionRegenerateButton onClick = {handleGenerateButtonClick}>다시 생성하기</style.MissionRegenerateButton>
                                     <style.MissionRegenerateButton onClick = {()=>{alert('hellotwo')}}>투두에 추가하기</style.MissionRegenerateButton>
                                 </style.MissionSelectButtonWrapper>
                             </style.MissionWrapper>

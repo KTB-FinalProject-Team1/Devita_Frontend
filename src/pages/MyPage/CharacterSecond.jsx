@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import img1 from '../../assets/img/sleepy11.png';
-import img2 from '../../assets/img/sleepy22.png';
-import img3 from '../../assets/img/sleepy33.png';
-import img4 from '../../assets/img/sleeply44.png'
+import img1 from '../../assets/img/worker11.png';
+import img2 from '../../assets/img/worker22.png';
+import img3 from '../../assets/img/worker33.png';
+import img4 from '../../assets/img/worker44.png'
 
-const CharacterAnimation = () => {
+const SecondCharacterAnimation = () => {
 
     const frames = [
         img1,
@@ -28,4 +28,4 @@ const CharacterAnimation = () => {
     );
 }
 
-export default CharacterAnimation;
+export default SecondCharacterAnimation;

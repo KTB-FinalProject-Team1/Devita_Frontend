@@ -12,6 +12,22 @@ const fadeInUp = keyframes `
     }
 `;
 
+const scaleAnimation = keyframes`
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.2);
+    }
+    50% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.2);
+    }
+`;
+
+
 ////////////////////////
 
 
@@ -76,9 +92,9 @@ export const TopCategoryButton = styled.button`
     border: none;
     border-radius: 5px;
     flex-shrink: 0;
-    &:hover{
-        background-color: #DEDEDE;
-    }
+    font-size: 12px;
+    background-color: ${props => props.selected ? '#D6E6FF' : 'white'};
+    color: ${props => props.selected ? 'gray' : 'black'};
 `;
 
 
@@ -123,9 +139,8 @@ export const SubCategoryButton = styled.button`
     font-size: 10px;
     border: none;
     border-radius: 5px;
-    &:hover{
-        background-color: #DEDEDE;
-    }
+    background-color: ${props => props.selected ? '#D6E6FF' : 'white'};
+    color: ${props => props.selected ? 'gray' : 'black'};
 `;
 
 
@@ -220,4 +235,23 @@ export const MissionRegenerateButton = styled.button`
     
 `;
 
+export const LoadingWrapper =  styled.div`
+    width: 90%;
+    height: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const LoadingText = styled.div`
+
+    font-size: 15px;
+    font-weight: bold;
+`;
+export const LoadingImg = styled.img`
+    width: 25%;
+    height: 35%;
+    animation: ${scaleAnimation} 1.5s ease forwards;
+`
 

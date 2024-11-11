@@ -16,7 +16,7 @@ const StyledButton = styled.button`
   justify-content: center;
 
   &:hover {
-    background-color: dodgerblue;
+    background-color: #4790FF;
   }
 `;
 

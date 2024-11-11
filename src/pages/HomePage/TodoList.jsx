@@ -43,27 +43,23 @@ const TodoList = ({ selectedDate, onAddTodo }) => {
     const closeCategoryModal = () => setIsCategoryModalOpen(false);
 
     const handleToggleClick = async (todoId) => {
+        const currentStatus = clickedTodos[todoId] || false;
+        const newStatus = !currentStatus;
 
         try {
-            const updatedTodo = await updateTodo(todoId);
+            await updateTodo(todoId);
             setClickedTodos((prevClickedTodos) => ({
                 ...prevClickedTodos,
-                [todoId]: updatedTodo.status,
-            }))
+                [todoId]: newStatus,  // 현재 상태 반전
+            }));
             dispatch(setTodos(todos.map(t =>
-                t.todoId === todoId ? { ...t, isChecked: updatedTodo.status, status: updatedTodo.status} : t
+                t.todoId === todoId ? { ...t, isChecked: newStatus, status: newStatus} : t
             )));
-            console.log('투두 성공',todoId, updatedTodo.status);
+            console.log('투두 성공',todoId, newStatus);
         } catch (error) {
             console.error('업데이트 실패', error, todoId);
         }
     };
-    useEffect(()=>{
-        dispatch(setTodos(todos.map(todo => ({
-            ...todo,
-            isChecked: clickedTodos[todo.todoId] || false,
-        }))));
-    },[clickedTodos, dispatch]);
 
     const handleAddTodo = async (todoText, categoryId) => {
         const todoData = {
@@ -94,7 +90,7 @@ const TodoList = ({ selectedDate, onAddTodo }) => {
 
     useEffect(() => {
         dispatch(fetchCategories());
-        dispatch(fetchTodos('weekly'));
+        dispatch(fetchTodos('monthly'));
     },[dispatch]);
     useEffect(() => {
         console.log("선택한 날짜에 해당하는 할 일 목록:", todos, formattedDate);
