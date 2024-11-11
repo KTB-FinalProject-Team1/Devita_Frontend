@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainLayout from './components/Layout/MainLayout';
 import SubMainLayout from "./components/Layout/SubMainLayout";
 import SettingLayout from './components/Layout/SettingLayout';
+import TodayLayout from './components/Layout/TodayLayout';
 import HomePage from './pages/HomePage/Home.main';
 import AIPage from "./pages/AIPage/AI.main";
 import KakaoLoginPage from './pages/LoginPage/KakaoLogin.main';
@@ -15,6 +16,7 @@ import SettingNickName from "./pages/MyPage/SettingPage.nickname";
 import SettingStack from './pages/MyPage/SettingPage.stack';
 import OnboardingPage from './pages/OnboardingPage/Onboarding.nickname';
 import OnboardingStackPage from './pages/OnboardingPage/Onboarding.stack';
+import TodayMissionCheck from "./pages/HomePage/TodayMissionCheck";
 // 테마 설정
 const theme = {
     colors: {
@@ -77,6 +79,7 @@ function App() {
                                     <Route path="/setting" element={<SettingLayout><SettingPage/></SettingLayout>}   />
                                     <Route path="/settingnickname" element={<SettingLayout><SettingNickName/></SettingLayout>}   />
                                     <Route path="/settingstack" element={<SettingLayout><SettingStack/></SettingLayout>}   />
+                                    <Route path="/todaymission" element={<TodayLayout><TodayMissionCheck/></TodayLayout>}   />
 
                                 </Routes>
                             </Content>

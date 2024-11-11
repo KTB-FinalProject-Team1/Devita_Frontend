@@ -93,7 +93,7 @@ export const CharacterLevelWrapper = styled.div`
 `;
 
 export const CharacterLevelTitleWrapper = styled.div`
-    width: 90%;
+    width: 80%;
     height: 30%;
     font-weight: bold;
     font-size: 14px;
@@ -108,7 +108,7 @@ export const Percent = styled.text `
     color:  #7DB1FF;;
 `
 export const CharacterLevelBar = styled.div`
-    width: 90%;
+    width: 82%;
     height: 35%;
     position: relative;
     border-radius: 30px;
@@ -134,8 +134,8 @@ export const CharacterButtonWrapper = styled.div`
 
 `;
 export const CharacterButton = styled.button`
-    width: 45%;
-    height: 90%;
+    width: 78%;
+    height: 88%;
     border-radius: 10px;
     display: flex;
     flex-direction: row;
@@ -143,8 +143,14 @@ export const CharacterButton = styled.button`
     justify-content: center;
     border: none;
     margin: 5px;
-    background-color: #D6E6FF;
+    background-color: #E9E9E9;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    &:hover{
+        width:83%;
+        height:93%;
+        color: gray;
+        background-color: #D6E6FF;
+    }
 
 `;
 export const CharacterButtonTextWrapper = styled.div`
@@ -154,23 +160,22 @@ export const CharacterButtonTextWrapper = styled.div`
     justify-content: center;
 
 `;
-export const CharacterButtonImageWrapper = styled.div`
-    width: 50px;
+export const CharacterButtonImageWrapper = styled.img`
+    width: 65px;
     height: 60px;
-    background-color: blue;
     margin-left: 5px;
    
 
 `;
 export const CharacterButtonTitle = styled.text`
-    font-size: 15px;
+    font-size: 17px;
     font-weight: bold;
 
 `;
 export const CharacterButtonSubTitle = styled.text`
-    font-size: 13px;
+    font-size: 15px;
     font-weight: bold;
-    color: blue;
+    color: #7DB1FF;
 
 `;
 

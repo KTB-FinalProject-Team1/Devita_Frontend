@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const freeMissionGet = async (subCategory) => {
+export const getFreeMission = async (subCategory) => {
 
     try {
         const response = await axios.post(

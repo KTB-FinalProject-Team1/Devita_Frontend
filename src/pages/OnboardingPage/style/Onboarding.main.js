@@ -122,7 +122,7 @@ export const SubCategoryButton = styled.button`
 `;
 
 export const marginDiv = styled.div`
-    height: 170px;
+    height: 100px;
 `;
 
 export const SettingNameWrapper = styled.div``;

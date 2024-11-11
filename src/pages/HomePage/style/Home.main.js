@@ -23,7 +23,7 @@ export const SubWrapper = styled.div`
     justify-content: center;
     background-color: white;
     border-radius: 20px 20px 0px 0px;
-    margin-top: 10px;
+    margin-top: 20px;
     
 `;
 export const CalendarWrapper = styled.div`
