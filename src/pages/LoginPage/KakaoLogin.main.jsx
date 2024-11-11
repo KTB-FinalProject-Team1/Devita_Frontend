@@ -4,12 +4,12 @@ import * as style from "./style/Login.main";
 import KakaoLogo from "../../assets/img/KakaoLogo.png";
 
 function KakaoLogin() {
-    const BASE_URL = process.env.REACT_APP_BASE_URL;
+    const BASE_URL = import.meta.env.VITE_BASE_URL;
 
     const handleKakaoLogin = async () => {
         try {
-            window.location.href = `${BASE_URL}/oauth2/authorization/kakao`;
             console.log(`${BASE_URL}/oauth2/authorization/kakao`);
+            window.location.href = `${BASE_URL}/oauth2/authorization/kakao`;
         } catch (error) {
             console.error('Error during Kakao login redirection:', error);
         }

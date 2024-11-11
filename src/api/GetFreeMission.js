@@ -4,7 +4,7 @@ export const getFreeMission = async (subCategory) => {
 
     try {
         const response = await axios.post(
-            `${process.env.REACT_APP_BASE_URL}/api/v1/mission/free`,
+            `${import.meta.env.VITE_BASE_URL}/api/v1/mission/free`,
             {subCategory},
             {
                 headers: {

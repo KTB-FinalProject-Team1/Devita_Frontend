@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const getCategories = async (categoryId = 0, title, date) => {
     try {
-        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/todo/categories`, {
+        const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/v1/todo/categories`, {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: 'Bearer ' + sessionStorage.getItem('accessToken'),

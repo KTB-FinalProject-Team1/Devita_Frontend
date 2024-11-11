@@ -4,7 +4,7 @@ export const getTodayMission = async () => {
 
     try {
         const response = await axios.get(
-            `${process.env.REACT_APP_BASE_URL}/api/v1/mission/daily`,
+            `${import.meta.env.VITE_BASE_URL}/api/v1/mission/daily`,
             {
                 headers: {
                     'Content-Type': 'application/json',

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const getTodo = async (viewType) => {
     try {
-        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/todo/calendar?viewType=${viewType}`, {
+        const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/v1/todo/calendar?viewType=${viewType}`, {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: 'Bearer ' + sessionStorage.getItem('accessToken'),
