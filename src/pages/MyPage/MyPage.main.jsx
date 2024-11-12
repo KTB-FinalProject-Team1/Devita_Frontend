@@ -5,44 +5,51 @@ import CharacterFirst from './CharacterFirst';
 import CharacterSecond from './CharacterSecond';
 import { getCharacterInfo } from "../../api/GetCharacterInfo";
 import moneyImg from '../../assets/img/handMoney.png';
+import { updateNutrition } from "../../api/UpdateNutrition";
 
 function MyPage() {
     const navigate = useNavigate();
     const user = sessionStorage.getItem("userNickname");
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try{
-                const data = await getCharacterInfo();
-                setExperience(data.experience);
-                setVita(data.nutrition);
-
-            }catch(e){
-                console.log('api호출실패',e);
-            }
-        };
-        fetchData();
-    } ,[])
-
     const [experience, setExperience] = useState(null);
     const [vita, setVita] = useState(null);
+
+
+    const fetchCharacterInfo = async () => {
+        try{
+            const data = await getCharacterInfo();
+            setExperience(data.experience);
+            setVita(data.nutrition);
+            console.log('캐릭터 정보',data);
+        }catch(error){
+            console.log('캐릭터 정보 불러오기 실패',e)
+        }
+    }
+    useEffect(() => {
+        fetchCharacterInfo();
+    } ,[])
+
     const level = Math.floor(experience / 100 +1 );
     const currentExperience = experience % 100;
     const growthRate = (currentExperience / 100) * 100;
+    const characterName = level === 1 ? '피곤한 개발자 지망생' : '신입사원 개발자';
 
     const handleClickSetting = () => {
         navigate("/setting");
     };
 
-    const handleGiveVitamin = () => {
+    const handleGiveVitamin = async () => {
         if (vita > 0) {
             setVita(vita - 1);
             setExperience(experience + 10);
+            try{
+                await updateNutrition();
+                await fetchCharacterInfo();
+            }catch(e){
+                console.e("영양제 업데이트 실패",e);
+            }
         }
     };
 
-
-    const characterName = level === 1 ? '피곤한 개발자 지망생' : '신입사원 개발자';
 
     return (
         <style.TotalWrapper>

@@ -10,5 +10,12 @@ export default defineConfig({
     server: {
         port: 3000,
         hmr: false,
+        proxy: {
+            '/api': {
+                target: 'http://localhost:8080', // 백엔드 서버 주소
+                changeOrigin: true,
+                secure: false,
+            },
+        },
     },
 });

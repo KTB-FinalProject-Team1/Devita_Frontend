@@ -11,8 +11,9 @@ export const getCategories = async (categoryId = 0, title, date) => {
             withCredentials: true,
             timeout: 20000
         });
-        console.error("카테고리 불러오기  성공", response.data);
-        return response.data.data;
+        const filteredData = response.data.data.filter(item => item.name !== "일일 미션" && item.name !== "자율 미션");
+        console.error("카테고리 불러오기  성공", filteredData);
+        return filteredData;
 
     } catch (error) {
         console.error("카테고리 불러오기  실패", error.message);

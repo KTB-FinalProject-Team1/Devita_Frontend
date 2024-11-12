@@ -10,6 +10,7 @@ export const getTodayMission = async () => {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${sessionStorage.getItem('accessToken')}`
                 },
+                withCredentials: true,
                 timeout: 30000
             }
         );
