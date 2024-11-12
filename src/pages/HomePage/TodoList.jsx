@@ -33,7 +33,6 @@ const TodoList = ({ selectedDate, onAddTodo }) => {
                 ...todo,
                 color: category ? category.color : '#CCCCCC', // 기본 색상 설정
                 categoryName: category ? category.name : 'Unknown',
-                isChecked: clickedTodos[todo.todoId] || false,
             };
         });
 
@@ -61,7 +60,7 @@ const TodoList = ({ selectedDate, onAddTodo }) => {
         }
     };
 
-    const handleAddTodo = async (todoText, categoryId) => {
+    {/*const handleAddTodo = async (todoText, categoryId) => {
         const todoData = {
             categoryId: categoryId,
             title: todoText,
@@ -78,6 +77,25 @@ const TodoList = ({ selectedDate, onAddTodo }) => {
             closeModal();
         } catch (response) {
             console.error('할 일 추가 실패:', response);
+        }
+    };*/}
+
+    const handleAddTodo = async (todoText, categoryId) => {
+        const todoData = {
+            categoryId: categoryId,
+            title: todoText,
+            date: formattedDate,
+        };
+
+        try {
+            // 서버로 새 할 일 추가 요청
+            await addTodo(todoData.categoryId, todoData.title, todoData.date);
+            await dispatch(fetchTodos('monthly'));
+
+            // 모달 닫기
+            closeModal();
+        } catch (error) {
+            console.error('할 일 추가 실패:', error);
         }
     };
 

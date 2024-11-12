@@ -10,10 +10,10 @@ export const getTodayMission = async () => {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${sessionStorage.getItem('accessToken')}`
                 },
-                timeout: 20000
+                timeout: 30000
             }
         );
-        return response.data;
+        return response.data.data;
     } catch (error) {
         console.error("일일 미션 호출 실패:", error.message);
         throw error;

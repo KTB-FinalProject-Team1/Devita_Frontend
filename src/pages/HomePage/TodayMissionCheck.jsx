@@ -19,7 +19,7 @@ function TodayMissionCheck() {
                 console.log(data);
 
                 setTimeout(() => {
-                    setMission('Promise와 async,await의 차이 설명하기 가나다라마바사아자');
+                    setMission(data.missionTitle);
                     setIsLoading(false); // 데이터 설정 후 로딩 상태 해제
                 }, 2000); // 5초 대기 시간 설정
             } catch (error) {
