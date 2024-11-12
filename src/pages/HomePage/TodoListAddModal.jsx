@@ -18,6 +18,7 @@ const TodoListAddModal = ({
                               onOpenCategoryModal
                           }) => {
     const [selectedCategory, setSelectedCategory] = useState({ id: null, name: '' });
+    const filteredCategories = categories.filter(item => item.name !== "일일 미션" &&  item.name !== "자율 미션");
     const handleAdd = () => {
         if (inputValue.trim() && selectedCategory.name.trim()) {
             console.log('전달되는가',selectedCategory.id);
@@ -61,7 +62,7 @@ const TodoListAddModal = ({
 
                             <style.CategoryButtonWrapper>
                                 <style.CategoryButtonScrollWrapper>
-                                    {categories.map((item, index) => (
+                                    {filteredCategories.map((item, index) => (
                                         <style.CategoryButton
                                             key={index}
                                             onClick={() => {

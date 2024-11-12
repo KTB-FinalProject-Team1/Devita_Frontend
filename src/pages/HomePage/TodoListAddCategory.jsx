@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import * as style from './style/TodoListAddModal'; // 동일한 스타일 사용 가능
 import ButtonBlue from "../../components/Buttons/ButtonBlue";
 import { addCategory } from "../../api/AddCategory";
+import { fetchCategories } from "../../store/categoriesSlice";
 import {ColorInput} from "./style/TodoListAddModal";
+import { useDispatch } from 'react-redux';
 
 const AddCategoryModal = ({ isOpen, onClose, categories, setCategories }) => {
     const [newCategoryName, setNewCategoryName] = useState('');
     const [newCategoryColor, setNewCategoryColor] = useState('#CCCCCC');
+    const dispatch = useDispatch();
 
     if (!isOpen) return null;
 
@@ -20,7 +23,7 @@ const AddCategoryModal = ({ isOpen, onClose, categories, setCategories }) => {
             try{
                 const response = await addCategory(newCategoryName, newCategoryColor);
                 console.log('카테고리 추가 성공', response);
-                setCategories([...categories, newCategory]);
+                await dispatch(fetchCategories());
                 setNewCategoryName('');
                 setNewCategoryColor('#CCCCCC');
                 onClose();

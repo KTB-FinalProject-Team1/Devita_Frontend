@@ -8,13 +8,7 @@ export const fetchCategories = createAsyncThunk('todos/fetchCategories', async()
         color: category.color || '#CCCCCC'
     }));
 });
-const initialState = [
-    { id: 100, name: '식습관', color: '#FFA7A7' },
-    { id: 101, name: 'AI 생성!', color: '#7DB1FF' },
-    { id: 102, name: '강제 미션!', color: '#086BFF' },
-    { id: 103, name: '업무', color: '#FFCD68' },
-    { id: 104, name: '약속', color: '#6FFFCF' },
-]
+const initialState = [];
 const categoriesSlice = createSlice({
     name: 'categories',
     initialState,

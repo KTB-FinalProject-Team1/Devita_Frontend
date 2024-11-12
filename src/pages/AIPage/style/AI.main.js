@@ -192,18 +192,19 @@ export const MissionEachWrapper = styled.button`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border: 1px solid ${({ level }) =>
-            level === 1 ? '#DEDEDE' :
+    border: 1px solid ${({ level, selected }) =>
+            selected ? '#7DB1FF' : 
+                level === 1 ? '#DEDEDE' :
                     level === 2 ? '#FFDD57' :
                             '#FF6B6B'};
-    background-color: ${({ level }) =>
-            level === 1 ? '#F9F9F9' :
+    background-color: ${({ level, selected}) =>
+            selected ? '#D6E6FF':
+                level === 1 ? '#F9F9F9' :
                     level === 2 ? '#FFF4CC' :
+                      
                             '#FFE5E5'};
-    &:hover {
-        border: 1px solid #7DB1FF;
-        background-color: #B8D4FF;
-    }
+    transition: background-color 0.3s ease, color 0.3s ease;
+ 
 `;
 
 export const MissionEachText = styled.div`
