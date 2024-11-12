@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-export const postSetFreeMission = async (selectedMission) => {
+export const postSetFreeMission = async (missionTitle) => {
 
     try {
         const response = await axios.post(
             `${import.meta.env.VITE_BASE_URL}/api/v1/mission/free/save`,
-            {selectedMission},
+            {missionTitle},
             {
                 headers: {
                     'Content-Type': 'application/json',
