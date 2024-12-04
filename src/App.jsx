@@ -38,8 +38,7 @@ const Frame = styled.div`
 
 const Wrapper = styled.div`
   width: 100%;
-  max-width: 425px;
-  height: 100vh;
+  max-width: 425px;aspect-ratio: 9 / 16;
   background-color: white;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   display: flex;

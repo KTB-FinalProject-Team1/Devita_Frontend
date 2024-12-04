@@ -62,7 +62,7 @@ export const Header = ({ color, background , title, isBack}) => {
                     <style.LoginButtonName>{userNickname}</style.LoginButtonName>
                     님 환영합니다
                 </style.LoginButtonWrapper>
-                ) : (
+            ) : (
                 <style.LoginButton onClick={handleClickLogin}>로그인 해주세요</style.LoginButton>
             )}
         </style.Layout>

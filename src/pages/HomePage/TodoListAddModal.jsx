@@ -29,9 +29,9 @@ const TodoListAddModal = ({
     };
 
     const modalVariants = {
-        hidden: { y: '100vh', opacity: 0 }, // 화면 하단에서 시작
+        hidden: { y: '80vh', opacity: 0 }, // 화면 하단에서 시작
         visible: { y: 0, opacity: 1 }, // 화면에 보이는 상태
-        exit: { y: '100vh', opacity: 0 }, // 다시 화면 아래로 내려가면서 사라짐
+        exit: { y: '80vh', opacity: 0 }, // 다시 화면 아래로 내려가면서 사라짐
     };
 
     return (
@@ -39,6 +39,7 @@ const TodoListAddModal = ({
             {isOpen && (
                 <style.OverLay>
                     <motion.div
+                        height={'100%'}
                         initial="hidden"
                         animate="visible"
                         exit="exit"

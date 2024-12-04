@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
         display: none;
     }
     scrollbar-width: none;
-    background-color: #D6E6FF;
+    background-color: #D6E6FF
 
 
 `;
@@ -21,7 +21,7 @@ export const SubWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: white;
+    background-color:white;
     border-radius: 20px 20px 0px 0px;
     margin-top: 20px;
     

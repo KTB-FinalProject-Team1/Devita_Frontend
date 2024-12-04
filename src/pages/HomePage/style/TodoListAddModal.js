@@ -24,6 +24,7 @@ export const ModalWrapper = styled.div`
     padding: 20px;
     border-radius: 20px;
     text-align: center;
+    margin-bottom: 100px;
 `;
 
 export const TopButtonWrapper = styled.div`//Wrapper1

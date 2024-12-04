@@ -56,4 +56,3 @@ export const BackIcon = styled(FaAngleLeft)`
   color: black;
  
 `;
-

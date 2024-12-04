@@ -61,7 +61,8 @@ function AIPage() {
     const handleMissionAdd = async () => {
         if (selectedMission) {
             try {
-                await postSetFreeMission(selectedMission);
+                console.log('미션 추가',selectedMission.missionTitle);
+                await postSetFreeMission(selectedMission.missionTitle);
                 alert('미션이 성공적으로 추가되었습니다!');
                 navigate('/');
             } catch (error) {

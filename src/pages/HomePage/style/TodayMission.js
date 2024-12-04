@@ -7,8 +7,8 @@ export const TodayMissionTotalWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     margin-top: 10px;
-    background-color: #D2D2D2D2;
-    border-radius: 20px;
+    background-color: white;
+    border-radius: 10px;
     padding: 10px;
 
 

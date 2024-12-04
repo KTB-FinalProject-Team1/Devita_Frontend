@@ -8,11 +8,11 @@ import ButtonBlue from "../../components/Buttons/ButtonBlue";
 
 
 function TodayMissionCheck() {
-    const [mission, setMission] = useState(null);
+    const [mission, setMission] = useState('교착 상태에 대해 설명하기');
     const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
 
-    useEffect(() => {
+    { useEffect(() => {
         const fetchTodayMission = async () => {
             try {
                 const data = await getTodayMission();
@@ -30,7 +30,7 @@ function TodayMissionCheck() {
 
         fetchTodayMission();
     }, []);
-
+}
     return (
         <style.TotalWrapper>
             {isLoading ? (
